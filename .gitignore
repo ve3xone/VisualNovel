@@ -25,3 +25,4 @@ _wfCache
 log.txt
 errors.txt
 traceback.txt
+game/cache/shaders.txt
