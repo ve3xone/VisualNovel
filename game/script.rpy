@@ -19,7 +19,6 @@ define scientist = Character('Учёный', color="#ffffff")
 label start:
     call ac1
 
-    label ac1_end:
     call ac2
 
     #звук приглушенный стук сердца(1) звук приглушенный стук шестерней и работы механизма(2)
