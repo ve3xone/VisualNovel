@@ -6,5 +6,6 @@
 
 # Launch
 1. Download Ren'Py 8.1.3 SDK: https://www.renpy.org/latest.html
-2. Open this project
-3. Launch Project
+2. Download repo
+3. Open this project
+4. Launch Project
