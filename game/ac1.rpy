@@ -620,7 +620,7 @@ label ac1:
         show scientist1-unhappy at left
         show scientist2-unhappy at right
         with Dissolve(0.3)
-        #scene lab with ImageDissolve("eye-opening-transition_waifu2x_1920x1080_png.png", 0.75, 15, reverse=False) 
+        #scene lab with ImageDissolve("eye-opening.png", 0.75, 15, reverse=False) 
 
         "Но разочаровано выглядели и учёные." #?
 
