@@ -394,6 +394,7 @@ label ac1:
 
         #только есть с лестницой поэтому взял university-hall
         scene university-hall
+        with Dissolve(1.5)
 
         hide lisa-smile with Dissolve(0.2)
         show lisa-neutral with Dissolve(0.2)
@@ -420,6 +421,7 @@ label ac1:
         pause 1.0  # Пауза на 1 секунду
 
         scene physics-hall
+        with Dissolve(1.5)
 
         #спрайт Удивленная Лиза
         #хз, нету спрайта
@@ -439,10 +441,11 @@ label ac1:
         
         #(фон Кафедра физики, спрайт Нейтральная Лиза)
         #хз взял из того что было
+        hide lisa-smile with Dissolve(0.2) 
         scene kafedra_fiziki
+        with Dissolve(1.5)
 
         #спрайт Нейтральная Лиза
-        hide lisa-smile with Dissolve(0.2) 
         show lisa-neutral with Dissolve(0.2) 
 
         "Тихонько прошмыгнув в неё, мы увидели пустой коридор кафедры."
@@ -460,7 +463,8 @@ label ac1:
         pause 1.0  # Пауза на 1 секунду
         
         scene lab
-
+        with Dissolve(1.5)
+        
         #спрайт Лиза в халате
         #нету, беру по контексту
         hide lisa-neutral with Dissolve(0.2)
@@ -636,8 +640,8 @@ label ac1:
         with Dissolve(1)
         scene black
         with Dissolve(3)
-        scene lab
-        with Dissolve(3)
+        #scene lab
+        #with Dissolve(3)
 
         anton "Да... Нет тут никакого эрмитажа."
 
@@ -663,7 +667,8 @@ label ac1:
 
         #(спрайт Недовольный Павел)
         show scientist1-unhappy at center
-
+        with Dissolve(0.4)
+        
         pavel "Что вы такое говорите. Мы регулярно там убираемся."
 
         "Ответил учёный, заходя в комнату." #(Зайдите, посмотрите сами. Ну и пылища тут у вас.
