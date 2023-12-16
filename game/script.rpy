@@ -3,6 +3,7 @@ define unknown = Character('Неизвестный', color="#ffffff")
 define liza = Character('Лиза', color="#ffffff")
 define anton = Character('Антон', color="#ffffff")
 define men = Character('Мужчина', color="#ffffff") #Павел
+define pavel = Character('Павел', color="#ffffff") #Павел
 define young = Character('Юноша', color="#ffffff")
 define scientist = Character('Учёный', color="#ffffff")
 
@@ -13,7 +14,6 @@ define scientist = Character('Учёный', color="#ffffff")
 # а eileen happy — "eileen happy.webp", и тогда они появятся в игре.
 
 #"О дивный новый мир" (Brave new world)
-
 
 # Игра начинается здесь:
 label start:
