@@ -7,6 +7,7 @@ define men = Character('Мужчина', color="#ffffff") #Павел
 define pavel = Character('Павел', color="#ffffff") #Павел
 define young = Character('Юноша', color="#ffffff")
 define robot = Character('Юноша', color="#ffffff")
+define kid = Character('Ребенок', color="#ffffff")
 define scientist = Character('Учёный', color="#ffffff")
 
 #define e = Character('Эйлин', color="#c8ffc8")
@@ -19,9 +20,9 @@ define scientist = Character('Учёный', color="#ffffff")
 
 # Игра начинается здесь:
 label start:
-    call ac1
-
-    #call ac2
+    call ac1 from _call_ac1
+    
+    call ac2 from _call_ac2
 
     #звук приглушенный стук сердца(1) звук приглушенный стук шестерней и работы механизма(2)
     #show eileen happy #показывает 
