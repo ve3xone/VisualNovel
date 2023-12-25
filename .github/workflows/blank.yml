@@ -38,4 +38,4 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: build-win-lin
-          path: /home/runner/work/VisualNovel/BraveNewWorld-1.0-dists/BraveNewWorld-1.0-pc.zip
+          path: $ artifact_path
