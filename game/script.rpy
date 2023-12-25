@@ -6,7 +6,8 @@ define anton = Character('Антон', color="#ffffff")
 define men = Character('Мужчина', color="#ffffff") #Павел
 define pavel = Character('Павел', color="#ffffff") #Павел
 define young = Character('Юноша', color="#ffffff")
-define robot = Character('Юноша', color="#ffffff")
+define robot = Character('Робот', color="#ffffff")
+define robot_teacher = Character('Робот-учитель', color="#ffffff")
 define kid = Character('Ребенок', color="#ffffff")
 define scientist = Character('Учёный', color="#ffffff")
 
