@@ -1,4 +1,4 @@
-image red_ball = "images/_ball.png"
+image red_ball = "images/qte/_ball.png"
 
 screen zaglushka():
     text "Кол-во: [run] Ошибки:[error_runs] , Кликайте ЛКМ" xalign 0.1 yalign 0.1
@@ -16,6 +16,7 @@ label startqte:
     $ run = 0
     $ error_runs = 0
     $ renpy.block_rollback()
+    $config.skipping=None
     $ _skipping = False
     jump start_game
 
@@ -55,7 +56,7 @@ label start_game:
         $ renpy.block_rollback()
         $ _skipping = True
         jump qte_win
-    show image("_loading_{}.png".format(run))
+    show image("images/qte/_loading_{}.png".format(run))
 
     show red_ball:
         xpos 850  # начальная позиция шарика по оси X
