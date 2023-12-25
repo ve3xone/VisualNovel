@@ -34,3 +34,9 @@ jobs:
         with:
           sdk_version: '8.1.3'
           target_platform: win
+
+      - name: Upload PlayIntegrityFix.zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: PlayIntegrityFix
+          path: /home/runner/work/VisualNovel/VisualNovel/BraveNewWorld-1.0-dists/BraveNewWorld-1.0-pc.zip
