@@ -6,7 +6,7 @@ screen zaglushka():
 screen keypress():
     text "Кол-во: [run] Ошибки:[error_runs] , Кликайте ЛКМ" xalign 0.1 yalign 0.1
     key "mouseup_1" action Return(True)
-    timer 0.8 action Return(False)
+    timer 0.5 action Return(False)
 
 label startqte:
     $ _dismiss_pause = False
@@ -21,8 +21,14 @@ label startqte:
 
 label start_game:
     $ renpy.block_rollback()
-    if error_runs == 3:
+    show screen zaglushka
+    $ renpy.block_rollback()
+    if error_runs == 4:
         #4 ошибки если то выходим из миниигры
+        hide keypress
+        hide screen keypress
+        hide screen zaglushka
+        scene circus-cg
         $ _dismiss_pause = False
         $ _dismiss_skip = False
         $ skip = False
@@ -31,9 +37,15 @@ label start_game:
         $ error_runs = 0
         $ renpy.block_rollback()
         $ _skipping = True
+        with hpunch
+        with Pause(2)
         jump qte_lose
     if run == 13:
         #Выходим из миниигры потому что выйграли
+        hide keypress
+        hide screen keypress
+        hide screen zaglushka
+        scene circus-cg
         $ _dismiss_pause = False
         $ _dismiss_skip = False
         $ skip = False
@@ -43,7 +55,6 @@ label start_game:
         $ renpy.block_rollback()
         $ _skipping = True
         jump qte_win
-    show screen zaglushka
     show image("_loading_{}.png".format(run))
 
     show red_ball:
