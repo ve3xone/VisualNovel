@@ -8,8 +8,11 @@ define pavel = Character('Павел', color="#ffffff") #Павел
 define young = Character('Юноша', color="#ffffff")
 define robot = Character('Робот', color="#ffffff")
 define robot_teacher = Character('Робот-учитель', color="#ffffff")
+define robot_moroz = Character('Робот-мороженщик', color="#ffffff")
 define kid = Character('Ребенок', color="#ffffff")
 define scientist = Character('Учёный', color="#ffffff")
+define leader = Character('Ведущий', color="#ffffff")
+define robot_leader = Character('Робот-ведущий', color="#ffffff")
 
 #define e = Character('Эйлин', color="#c8ffc8")
 # Вместо использования оператора image можете просто
