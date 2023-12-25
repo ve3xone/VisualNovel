@@ -39,4 +39,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: PlayIntegrityFix
-          path: $(ls | grep '\-dists')/*
+          path: /home/runner/work/BraveNewWorld-1.0-dists/*
