@@ -333,6 +333,8 @@ label ac1:
             show lisa-neutral with Dissolve(0.35)
             "Я передал буклет Лизе."
 
+            $ flipped_the_booklet = True
+            
             jump ac1_select
     
     label ac1_select:
