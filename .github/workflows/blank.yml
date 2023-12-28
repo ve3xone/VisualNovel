@@ -30,23 +30,13 @@ jobs:
 
       - name: Build
         id: build
-        uses: nyancatda/RenpyBuild@main
+        uses: ProjectAliceDev/renpy-build-action@master
         with:
-          sdk_version: '8.1.3'
-          target_platform: win, mac, linux
+          sdk-version: '8.1.3'
+          project-dir: '.'
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: renpy-artifacts
-          path: ${{ steps.build.outputs.artifact_path }}
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Download Artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: renpy-artifacts
-          path: renpy-artifacts
+          path: ${{ steps.build.outputs.dir }}
