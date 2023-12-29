@@ -20,6 +20,7 @@ define config.name = _("Дивный новый мир: спасение буд�
 
 define gui.show_name = True
 
+define config.developer = True
 
 ## Версия игры.
 
