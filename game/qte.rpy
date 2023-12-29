@@ -29,7 +29,10 @@ label start_game:
         hide keypress
         hide screen keypress
         hide screen zaglushka
-        scene circus-cg
+        if not qte_ac3:
+            scene circus-cg
+        else:
+            scene black #Заглушка для act3
         $ _dismiss_pause = False
         $ _dismiss_skip = False
         $ skip = False
@@ -40,13 +43,20 @@ label start_game:
         $ _skipping = True
         with hpunch
         with Pause(2)
-        jump qte_lose
+        if not qte_ac3:
+            jump qte_lose
+        else:
+            "Мегамозг продолжал нашептывать мне." #(В случае неудачи)
+            jump select_5_select_2
     if run == 13:
         #Выходим из миниигры потому что выйграли
         hide keypress
         hide screen keypress
         hide screen zaglushka
-        scene circus-cg
+        if not qte_ac3:
+            scene circus-cg
+        else:
+            scene black #Заглушка для act3
         $ _dismiss_pause = False
         $ _dismiss_skip = False
         $ skip = False
@@ -55,7 +65,10 @@ label start_game:
         $ error_runs = 0
         $ renpy.block_rollback()
         $ _skipping = True
-        jump qte_win
+        if not qte_ac3:
+            jump qte_win
+        else:
+            jump qte_act3_win
     show image("images/qte/_loading_{}.png".format(run))
 
     show red_ball:
