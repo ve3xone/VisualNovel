@@ -1,13 +1,21 @@
 label ac1:
+    #Акт 1. Пролог
+    #abyss_call
+    play music "abyss_call_7dl.ogg" volume 0.1
     #(Фон Фантазия)
-    #scene black
     scene fantasy_anim
 
-    #*звук приглушенный стук сердца* 
+    
     #*звук приглушенный стук шестерней и работы механизма*
 
     "Я никогда не слышал звук."
+    #*звук приглушенный стук сердца* 
+    $ renpy.sound.play("audio/heartbeat_7dl.ogg", loop=True, relative_volume=0.08)
+
     "Слабый гул электрических механизмов, стук аппарата перекачки жидкости в моём теле."
+
+    stop sound fadeout 1
+
     "Я не слышал этого по настоящему, но абсолютно точно знал, что оно есть."
     "Представлял, как это могло звучать."
     "Мне ещё не дали возможность слышать."
@@ -24,6 +32,12 @@ label ac1:
     "Услышать."
     "Теперь же создатели считают, что я готов."
     "Готов поставить точку в дискуссии вековой давности."
+
+    stop music fadeout 1
+
+    #(звук ambience_explosive_post)
+    #$ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.02,)
+    $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.02)
 
     #*звуки стихают* 
     #*звук слабый писк*
@@ -49,6 +63,10 @@ label ac1:
     #Да, не хорошо сбивать режим сна...
     unknown "{image=anton_text_blur/text_blur_6.png}"
 
+    #$ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.015)
+    #$ renpy.music.set_volume(0.5, channel="audio/ambience_explosive_post_7dl.ogg")
+    $ renpy.sound.set_volume(0.8)
+
     "Слуховой модуль подключён."
 
     #Сделать blur 2
@@ -58,10 +76,14 @@ label ac1:
 
     "Распознание речи. Женский голос."
 
+    $ renpy.sound.set_volume(0.5)
+
     #blur 3 {image=anton_text_blur/text_blur_3.png}
     unknown "Антон!"
 
     "Агрессивный тон. Возможна угроза. Подготовить..."
+
+    $ renpy.sound.set_volume(0.1)
 
     #blur 2 {image=anton_text_blur/text_blur_2.png}
     unknown "Антон!"
@@ -69,15 +91,23 @@ label ac1:
     #Сцена 2 
     #(Экран на миг становится светлым, заменяется на фон Кафе)
     #Звуки пропадают
+    #(звуки пропадают, экран на миг становится светлым, фон Кафе, спрайт Недовольная Лиза, звук crowd_cafe)
+
+    stop sound
+
+    $ renpy.sound.set_volume(1.0)
 
     # Затемнение экрана
     scene black
+    with Dissolve(0.7)
     pause 1.0  # Пауза
     
     # Смена фона на кафе
     scene cafe with ImageDissolve("oko.png", 0.75, 8, reverse=False)     # Смена картинок от черного к белому
     pause 0.4  # Пауза
     
+    $ renpy.sound.play("audio/crowd_cafe.mp3", loop=True, relative_volume=0.035)
+
     #(Спрайт Недовольная Лиза)
     show lisa-unhappy with Dissolve(0.5)
 
@@ -88,6 +118,8 @@ label ac1:
 
     #((Фон на миг становится красным) я получил подзатыльник)
     #Заместо этого сделал Тряску экрана выше написал [все норм крч]
+
+    play music "everyday_7dl.ogg" volume 0.05
 
     liza "Ты опять меня не слушал?"
 
@@ -291,6 +323,7 @@ label ac1:
 
     #(цг Буклет)
     hide lisa-smile with Dissolve(0.2)
+    scene cg_buklet with Dissolve(0.5)
     # хз на 16-12-23 нету картинки
 
     "И достал оттуда буклет." #(`куда же он... А ага!`)
@@ -300,6 +333,10 @@ label ac1:
 
     anton "О! Именно тот, что я хотел тебе дать."
     anton "Там ручкой записаны дополнительные контакты."
+
+    stop music fadeout 0.5
+    stop sound fadeout 0.5
+
     anton "Хотя погоди..."
 
     #ВЫБОР: 1. Отдать буклет 2. Перевернуть буклет
@@ -307,6 +344,9 @@ label ac1:
 
     menu:
         "Отдать буклет":
+            play music "old_kiss_7dl.ogg" volume 0.05
+            $ renpy.sound.play("audio/crowd_cafe.mp3", loop=True, relative_volume=0.035)
+
             anton "А, нет, все нормально. Держи."
 
             # (фон Кафе, спрайт Нейтральная Лиза)
@@ -315,20 +355,30 @@ label ac1:
 
             "Я передал буклет Лизе."
 
+            $ flipped_the_booklet = False
+
             jump ac1_select
 
         "Перевернуть буклет":
             #2. (цг Перевернутый буклет 1, экран трясётся, крутится, цвета инвертируются, разъезжаются)
-            #картинки нету...
+            scene black
+            with Dissolve(0.85)
+            play sound "wakeup_7dl.ogg" volume 0.05
+            show cg_buklet_1 at Glitch(glitch_strength=0.000001)
+            pause 3
+            scene cg_buklet_1
+            stop sound
 
             "Что за?.."
-
+            
+            #hide layer
             #(Экран возвращается в норму, цг перевернутый буклет ручкой написаны дополнительные контакты)
             #картинки нету...
-
+            $ renpy.sound.play("audio/crowd_cafe.mp3", loop=True, relative_volume=0.035)
             anton "А, нет... все нормально. Держи."
 
             #(фон Кафе, спрайт Нейтральная Лиза)
+            play music "old_kiss_7dl.ogg" volume 0.05
             scene cafe
             show lisa-neutral with Dissolve(0.35)
             "Я передал буклет Лизе."
@@ -341,6 +391,8 @@ label ac1:
         #(спрайт Удивленная Лиза)
         hide lisa-neutral with Dissolve(0.2)
         show lisa-smile with Dissolve(0.2)
+
+        $ renpy.sound.play("audio/stomp.ogg", loop=False, relative_volume=0.04)
         
         "Громкий топот вывел меня из ступора."
 
@@ -386,6 +438,16 @@ label ac1:
 
         anton "Да фиг с этим обедом. Посмотрим, что они там натворили."
         anton "Пойдём!"
+        hide lisa-smile
+        show lisa-smile:
+            xpos 600
+            ypos 185
+            linear 2 xpos 2500  # движение вверх за 2 секунды до позиции 100 по оси Y
+
+        pause 2
+        
+        stop sound fadeout 0.5
+        stop music fadeout 0.5
 
         #Сцена 3.
         #(экран гаснет, фон Вход в кафедру физики, спрайт Нейтральная Лиза, звук гомона толпы)
@@ -403,6 +465,8 @@ label ac1:
 
         #звук гомона толпы
         #пока что нету жду 16-12-23
+        play music "last_hope_7dl.ogg" volume 0.035
+        $ renpy.sound.play("audio/crowd.ogg", loop=True, relative_volume=0.005)
 
         "Через минуту мы уже стояли на пороге кафедры физики."
         "Вокруг, ожидаемо, собралась толпа зевак."
@@ -418,6 +482,18 @@ label ac1:
 
         "Я схватил ничего не понимающую Лизу за руку и потащил за собой."
 
+        hide lisa-smile
+        show lisa-smile:
+            xpos 600
+            ypos 185
+            linear 2 xpos 2500  # движение вверх за 2 секунды до позиции 100 по оси Y
+
+        pause 2
+        
+        stop sound fadeout 0.5
+
+        pause 0.5
+
         #(звуки пропадают, экран гаснет, фон Вход в кафедру физики с лестницы, спрайт Удивленная Лиза)
         scene black
         pause 1.0  # Пауза на 1 секунду
@@ -431,6 +507,8 @@ label ac1:
         show lisa-smile with Dissolve(0.2) 
 
         "Вскоре мы стояли у большой железной двери, располагающейся на одной из лестничных площадок."
+
+        $ renpy.sound.play("audio/metaldoorcreaking.ogg", loop=False, relative_volume=0.03)
 
         "Потянув за ручку, она послушно открылась."
 
@@ -457,6 +535,8 @@ label ac1:
 
         "Схватив по дороге висевшие халаты, мы вошли в открытое помещение, в котором стояли двое учёных."
 
+        stop music fadeout 0.5
+
         #Сцена 4.
         #(экран гаснет, фон Лаборатория, спрайт Лиза в халате)
 
@@ -471,6 +551,8 @@ label ac1:
         #нету, беру по контексту
         hide lisa-neutral with Dissolve(0.2)
         show lisa-neutral with Dissolve(0.2)
+
+        play music "midday_reverie_7dl.ogg" volume 0.035
 
         anton "Здравствуйте, товарищи учёные!"
 
@@ -577,6 +659,9 @@ label ac1:
         anton "Вот так."
         scientist "Нет!"
 
+        #(звук open_vault 1 раз) 
+        $ renpy.sound.play("audio/open_vault_7dl.ogg", loop=False, relative_volume=0.02)
+
         "Вскрикнул ученый. И дверь отварилась."
 
         anton "Видите? Ничего не произошло."
@@ -675,6 +760,8 @@ label ac1:
 
         "Ответил учёный, заходя в комнату." #(Зайдите, посмотрите сами. Ну и пылища тут у вас.
 
+        #(звук doorclosing 1 раз) "Он явно собирался вывести отсюда меня, однако звук закрытия двери нарушили его планы."
+        $ renpy.sound.play("audio/doorclosing.ogg", loop=False, relative_volume=0.035)
         "Он явно собирался вывести отсюда меня, однако вскрик его коллеги и звук закрытия двери нарушили его планы." #Учёный
         return
 
@@ -687,7 +774,13 @@ image fantasy_anim:
 
 #Кафе (студенческая столовая пока что заглушка 14-12-23 жду картинку)
 image cafe:
-    "scenes/cafe.jpg"
+    "scenes/cafe.png"
+
+image cg_buklet:
+    "scenes/cg_buklet.png"
+
+image cg_buklet_1:
+    "scenes/cg_buklet_1.png"
 
 image physics-hall:
     "scenes/physics-hall.png"
