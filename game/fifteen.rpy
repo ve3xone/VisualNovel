@@ -217,8 +217,14 @@ label fifteen_win:
     hide screen fifteen_scr
     $ renpy.block_rollback()
     $ _skipping = True
-    $ fifteen_comp = True
-    jump contiune_2
+    
+    if fifteen_ac3:
+        $ fifteen_ac3_win = True
+        $ fifteen_comp = True
+        jump fifteen_act3_win
+    else:
+        $ fifteen_comp = True
+        jump contiune_2
 
 label fifteen_lose:
     $ timer_on = False
@@ -227,8 +233,15 @@ label fifteen_lose:
     hide screen fifteen_scr
     $ renpy.block_rollback()
     $ _skipping = True
-    $ fifteen_comp = False
-    jump contiune_2
+    
+    if fifteen_ac3:
+        $ fifteen_ac3_win = False
+        $ fifteen_comp = False
+        "Мегамозг продолжал нашептывать мне." #(В случае неудачи)
+        jump select_5_select_2
+    else:
+        $ fifteen_comp = False
+        jump contiune_2
 
 #label quit_fifteen_game:
 #    hide screen fifteen_scr
