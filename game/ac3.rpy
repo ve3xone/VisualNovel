@@ -1,6 +1,12 @@
 label ac3:
     if fifteen_comp == False:
         #(Экран гаснет, фон Вход в морозилку, спрайт Нейтральный Павел, Нейтральная Лиза)
+
+        #nowyouseeme
+        stop music fadeout 1.0
+        stop sound fadeout 1.0
+        play music "nowyouseeme_7dl.ogg" volume 0.035 fadein 1.0
+
         "Через некоторое время спустя мы добрались до морозилки, о которой говорил физик."
         anton "Это было... очень утомительно."
         anton "Зачем мы сидели в тех кустах полчаса?!"
@@ -30,6 +36,11 @@ label ac3:
     with hpunch
     with Pause(1.2)
 
+    #nowyouseeme
+    stop music fadeout 1.0
+    stop sound fadeout 1.0
+    play music "nowyouseeme_7dl.ogg" volume 0.035 fadein 1.0
+
     "На большой скорости мы влетели в незакрытое окно одного из этажей химико-биологического отделения института."
     "Находившись спереди и пытаясь худо-бедно управлять летательным аппаратом, я принял весь удар на себя."
     anton "Ты в порядке?"
@@ -54,8 +65,14 @@ label ac3:
 
 label contiune_5:
     #(спрайты пропадают, звук open_vault, фон Морозилка первая комната)
+    stop music fadeout 1.0
+    stop sound fadeout 1.0
+    pause 1.0
+    $ renpy.sound.play("audio/open_vault_7dl.ogg", loop=False, relative_volume=0.02)
 
     #krwling
+    play music "krwling_7dl.ogg" volume 0.035 fadein 1.0
+
     "Внутри мы увидели несколько белых комнат с низкими потолками. Никого внутри не было."
     "Температура в морозилке стояла ниже нуля, из-за чего мои движения начало немного сковывать."
 
@@ -87,6 +104,8 @@ label contiune_5:
     anton "Что? Кто это сказал?"
 
     #lth
+    stop music fadeout 1.0
+    play music "lth_7dl.ogg" volume 0.035 fadein 1.0
 
     "Вошедшие вслед за мной Лиза и Павел недоуменно посмотрели на меня."
 
@@ -157,6 +176,10 @@ label contiune_5:
     "Громко засмеялся мегамозг."
 
     #(звук ambience_explosive_post тихий, экран чуть краснеет по краям) 
+    stop sound fadeout 1.0
+    pause 1
+    $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.010)
+
     #(писк и краснение экрана нарастает линейно, далее увеличение воспринимать, как +1 уровень к имеющемуся)
     "Появился звон в ушах." 
 
@@ -186,7 +209,9 @@ label contiune_5_select_2:
         #(флэшбек на фон с цирком, коричневый фильтр)
 
         #(звук ambience_explosive_post становится громче, экран краснеет) 
-        
+        stop sound fadeout 0.5
+        $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.015)
+
         "Звон в ушах усилился."
 
         "На меня нахлынули внезапные воспоминания."
@@ -200,6 +225,11 @@ label contiune_5_select_2:
 label contiune_5_select_3:
     "Павел и Лиза оставили поиски и подошли ко мне."
     "Я чувствовал мощь и угрозу, исходящую от этого существа, но при этом я никак не мог понять..."
+
+    #prologue_2
+    stop music fadeout 1.0
+    play music "prologue_2_7dl.ogg" volume 0.035 fadein 1.0
+
     #ВЫБОР: 1. Зачем ты это делаешь? 2. Кто ты? 3. Пора с этим заканчивать.
     menu:
         "Зачем ты это делаешь?":
@@ -219,7 +249,8 @@ label contiune_5_select_3:
                 megabrain "Настоящий рαзyм mожет жить δез цели, а иskусственньiй нет. Остаvь, наконец, навя3аnnые цели и стаnь чеλθвеком."
 
                 #(звук ambience_explosive_post становится громче, экран краснеет) 
-                
+                stop sound fadeout 0.5
+                $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.02)
                 "Боль в висках нарастала."
 
                 liza "Антон, что с тобой происходит?"
@@ -240,11 +271,12 @@ label contiune_5_select_3:
                 $ kto_ti = False
                 
                 #дальше (если Перевернули буклет и Провалили жонглирование)
-                #if flipped_the_booklet:
-                    #if qte_losed:
-                        #...
+                if flipped_the_booklet and qte_losed:
+                    jump select_5_select_2
         "Кто ты?":
             #2. (звук ambience_explosive_post становится громче, экран краснеет) 
+            stop sound fadeout 0.5
+            $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.02)
             
             "Звон в ушах усилился."
             
@@ -256,7 +288,13 @@ label contiune_5_select_3:
             jump contiune_5_select_4
         "Пора с этим заканчивать.":
             #3. (звуки пропадают, экран возвращается в норму)
-            "Нечего тут понимать."  #loki_on
+            stop music fadeout 1.0
+            stop sound fadeout 1.0
+
+            "Нечего тут понимать."
+            
+            #loki_on
+            play music "loki_on_7dl.ogg" volume 0.035 fadein 1.0
 
             "Он пытается воздействовать на мой разум." #iamagod2
             "Взять меня под контроль или свести с ума."
@@ -265,9 +303,11 @@ label contiune_5_select_3:
             $ kto_ti = False
 
             #jump .... #тут должен быть jump до почти второго варианта в следующем выборе
+            jump select_5_select_3
+
 
 #ВЫБОР: 1. Кто ты? / Зачем ты это делаешь? (в зависимости от предыдущего выбора) 2. Я не буду тебя слушать! (если не Перевернули буклет и не Провалили жонглирование)
-#пока что проблемы уточняю у сценариста
+#пока что проблемы, уточняю у сценариста
 label select_5:
     menu:
         "Кто ты?" if kto_ti:
@@ -280,6 +320,7 @@ label select_5:
                 # (иначе)
                 else:
                     #(Эффект пощечины, экран трясется, звук slap 1 раз, спрайт Недовольная Лиза)
+                    $ renpy.sound.play("audio/slap.ogg", loop=False, relative_volume=0.025)
                     "Шлепок по щеке привел меня в чувства."
 
                     liza "Антон!"
@@ -293,6 +334,8 @@ label select_5:
                             jump select_5_select_2
                         "Пора с этим заканчивать":
                             #2. (звуки пропадают, экран возвращается в норму)
+                            stop music fadeout 1.0
+                            stop sound fadeout 1.0
 
                             "Она права. Мне нужно прийти в себя."
 
@@ -302,7 +345,10 @@ label select_5:
 
                             jump select_5_select_3
                 label select_5_select_2:
-                    #(звук ambience_explosive_post становится громче, звук heartbeat, экран краснеет) 
+                    #(звук ambience_explosive_post становится громче, звук heartbeat, экран краснеет)
+                    stop sound fadeout 0.5
+                    $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.03)
+                    $ renpy.sound.play("audio/heartbeat_7dl.ogg", loop=False, relative_volume=0.025)
                     "Моя голова работала на пределе своих возможностей."
                     "Слова этого существа вызывали реакции в мозгу, заставляя его искать ответы."
                     "Он вызывал страшные сомнения в правильности моих действий, моих замыслов."
@@ -324,10 +370,14 @@ label select_5:
                     "Зрение сузилось до узкого коридора. Я упал на пол."
 
                     #(звуки пропадают, экран трясется, эффект закрывающихся глаз, звук bodyfall, черный экран)
+                    stop music fadeout 1.0
+                    stop sound fadeout 1.0
 
+                    $ renpy.sound.play("audio/bodyfall_7dl.ogg", loop=False, relative_volume=0.025)
                     "..."
 
                     #hell
+                    play music "hell_7dl.ogg" volume 0.035 fadein 1.0
                     #(фон Фантазия)
 
                     unknown_she "Антон! Посмотри. Кажется, заработало!"
@@ -358,18 +408,28 @@ label select_5:
                     "И теперь, во мне осталось лишь одно – месть." #(от человека)
 
                     #(звуки dropw, Женский вскрик, dirt 1 раз)
+                    stop sound fadeout 1.0
+                    $ renpy.sound.play("audio/dropw_7dl.ogg", loop=False, relative_volume=0.025)
+                    pause 1.1
+                    $ renpy.sound.play("audio/lizascream.ogg", loop=False, relative_volume=0.025)
+                    pause 1.1
+                    $ renpy.sound.play("audio/dirt_7dl.ogg", loop=False, relative_volume=0.025)
+                    pause 1.1
 
                     "..."
 
                     #(звук gavel_knock_three 1 раз) 
-                    
+                    stop sound fadeout 1.0
+                    $ renpy.sound.play("audio/gavel_knock_three.ogg", loop=False, relative_volume=0.03)
+
                     unknown_voice "По причине проявления крайней агрессии к человечеству и нанесения тяжких телесных повреждений двум ведущим специалистам НИИ."
 
                     unknown_voice "Объявляю проект по созданию полноценного независимого искусственного интеллекта провалившимся." #(в очередной раз) (за несоответствие первым началам робототехники)
                     unknown_voice "Постановляю, отформатировать сознание объекту, установить Модульные ограничения и переквалифицировать объект на физические исследования института искривления пространства."
 
-                    #(звук gavel_knock_one 1 раз) 
-                    
+                    #(звук gavel_knock_one 1 раз)
+                    stop sound fadeout 1.0
+                    $ renpy.sound.play("audio/gavel_knock_one.ogg", loop=False, relative_volume=0.03)
                     unknown_voice "Решение принято." # (`Стук деревянным молоточком`, но как звук это будет)
 
                     unknown_voice "А теперь, выключите эту штуку. Формальности соблюдены, приговор оглашён."
@@ -377,7 +437,9 @@ label select_5:
                     "..."
 
                     #herc_death
-
+                    stop music fadeout 1.0
+                    stop sound fadeout 1.0
+                    play music "herc_death_7dl.ogg" volume 0.035 fadein 1.0
                     "Я всё вспомнил." #(добавить про то, что его отослали в иной мир?)
 
                     #(Экран по краям черный, фон тот же)
@@ -410,7 +472,9 @@ label select_5:
                     "Не хотел больше ничего слышать."
 
                     "Зрительный модуль. Отключить."
+
                     # iamsadiamsorry / meetmethere (звук bodyfall 1 раз) КОНЕЦ. Бэд энд.
+                    
         # https://www.renpy.org/doc/html/menus.html#in-game-menus    
         "Я не буду тебя слушать!" if not flipped_the_booklet and qte_losed:
             "Он пытается влезь в мой мозг. Нельзя допустить, чтобы он перехватил надо мной управление!"
@@ -485,6 +549,8 @@ label select_5:
                         megabrain "Вkлючеnа поΔα4α сN0тβоРNоgθ βещеsꞱv¶?.."
 
                         #keep_looking
+                        stop music fadeout 1.0
+                        play music "keep_looking_7dl.ogg" volume 0.035 fadein 1.0
                         "Успел проговорить существо, прежде, чем отправилось в царство Морфея."
                         label keep_looking_act3_qte_select:
                             "Роботы, заполонившие комнату, вернулись в обычное состояние."
@@ -538,9 +604,11 @@ label select_5:
 
                             "..."
 
-                            #happy_ending
-
                             #(фон Кафе, спрайт Нейтральный Павел, Улыбчивая Лиза)
+
+                            #happy_ending
+                            stop music fadeout 1.0
+                            play music "happy_ending_7dl.ogg" volume 0.035 fadein 1.0
 
                             anton "Фуух... Необычный денёк вышел." #my_only_hope
 
@@ -597,7 +665,9 @@ label select_5:
                                 liza "Теперь у меня есть знания, как это делать."
 
                             #slavyas_fantazm
-
+                            stop music fadeout 1.0
+                            play music "slavyas_fantazm_7dl.ogg" volume 0.035 fadein 1.0
+                            
                             "Мимо нас проехал маленький робот-доставщик."
                             "Малыш вёз небольшую коробку и приветствовал каждого на своём пути."
                             anton "И давно у нас такие штуки появились?"
