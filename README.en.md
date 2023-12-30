@@ -24,6 +24,6 @@ Wait for it to be in the repository in the column on the right in `Releases`
 
 # Thank you so much:
 
-* [NyashniyVladya](https://github.com/NyashniyVladya /) for his [RenPyGlitch](https://github.com/NyashniyVladya/RenPyGlitchs ) which draws glitch effects well
+* [NyashniyVladya](https://github.com/NyashniyVladya/) for his [RenPyGlitch](https://github.com/NyashniyVladya/RenPyGlitchs) which draws glitch effects well
 
-* Also to the VK group [RenPy](https://vk.com/renpy ) for her extensive list of [minigames](https://vk.com/topic-7553243_35171228 ) who served as inspiration and help in creating their own minigames in our visual novel
+* Also to the VK group [RenPy](https://vk.com/renpy) for her extensive list of [minigames](https://vk.com/topic-7553243_35171228) who served as inspiration and help in creating their own minigames in our visual novel
