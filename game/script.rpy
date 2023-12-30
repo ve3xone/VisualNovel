@@ -25,6 +25,7 @@ default Calmed_Lisa_down = False
 default Select_1_and_3 = False
 default fifteen_comp = False
 default qte_ac3 = False
+default fifteen_ac3 = False
 
 # Игра начинается здесь:
 label start:
