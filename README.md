@@ -9,3 +9,9 @@
 2. Download repo
 3. Open this project
 4. Launch Project
+
+# Огромное спасибо:
+
+* [NyashniyVladya](https://github.com/NyashniyVladya/) за его [RenPyGlitch](https://github.com/NyashniyVladya/RenPyGlitchs) который хорошо рисует глич эффекты
+
+* Также группе вк [RenPy](https://vk.com/renpy) за её обширный список [миниигр](https://vk.com/topic-7553243_35171228) который послужил вдохновлением и помощи в создании своих миниигр в нашей визуальной новелле
