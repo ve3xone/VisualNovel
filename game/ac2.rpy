@@ -18,9 +18,12 @@ image street:
 
 label ac2:
     #(музыка пропадает)
+    stop music fadeout 2
 
     "На секунду все звуки будто исчезли."
+    
     #nap_one типо музыка
+    play music "nap_one_7dl.ogg" volume 0.035
 
     #??
     "У двери стояла Лиза и невинно хлопала ресничками."
@@ -112,6 +115,8 @@ label ac2:
     menu:
         "Нам нужно поскорее выбираться отсюда":
             #out_of_your_tier sound
+            stop music fadeout 1.0
+            play music "out_of_your_tier_7dl.ogg" volume 0.035 fadein 1.0
 
             "Посмотрев на грустные попытки физика открыть дверь, я огляделся в поисках какого-нибудь инструмента."
             "И он не заставил себя долго искать."
@@ -124,6 +129,10 @@ label ac2:
             pavel "Кажется, она осела, попробуй немного приподнять её."
             
             "Я засунул тонкий край монтировки в щель снизу двери, нажав на импровизированный рычаг, а Павел толкнул дверь."
+            
+            #звук open_vault
+            $ renpy.sound.play("audio/open_vault_7dl.ogg", loop=False, relative_volume=0.025)
+
             "Дверь не поддалась."
             "Ещё несколько попыток следом не увенчались успехом."
 
@@ -133,19 +142,28 @@ label ac2:
 
             pavel "Приложись-ка со мной."
 
+            stop music fadeout 1.0
+
             "Нажав на рычаг, я со всей силы ударил по двери."
             
-            #(звук Металлическая дверь 1 раз) 
+            #(звук Металлическая дверь 1 раз)
+            $ renpy.sound.play("audio/metaldoorcreaking.ogg", loop=False, relative_volume=0.03)
             "И провалился в открывшийся проем."
 
             #(экран чернеет, цг Цирк, звук Гомон толпы дети)
             scene black
             with Dissolve(3)
+            pause 3.0
 
             scene circus-cg
             with Dissolve(1)
+            pause 0.5
 
-            #pixies_playing sound    
+            $ renpy.sound.play("audio/crowd_kids.ogg", loop=True, relative_volume=0.03)
+
+            #pixies_playing sound   
+            play music "pixies_playing_7dl.ogg" volume 0.035 fadein 1.0
+
             "Перед собой я видел огромную толпу детей."
             "Они шумели, кричали, смеялись, но при этом вниамтельно смотрели на меня."
             "От их непрерывного взгляда мне становилось не по себе."
@@ -154,6 +172,8 @@ label ac2:
             
             "Фух. Ну, понеслась."
             $Calmed_Lisa_down = False
+            stop music fadeout 1.0
+            stop sound fadeout 1.0
             jump minigame
 
         "Лиза выглядит совсем плохо":
@@ -196,6 +216,8 @@ label select_menu_2:
             jump select_menu_3
         "«Я и сам не понимаю»":
             #i_will_find_you sound
+            stop music fadeout 1.0
+            play music "i_will_find_you_7dl.ogg" volume 0.035 fadein 1.0
 
             anton "Но я не боюсь."
             anton "Ведь со мной рядом ты. И Павел."
@@ -270,6 +292,10 @@ label select_menu_3:
                 #(фон Коридор НИИ)
                 scene hall
 
+                stop music fadeout 1.0
+                stop sound fadeout 1.0
+                play music "magic_is_gone_7dl.ogg" volume 0.035 fadein 1.0
+
                 "Яркий свет и футуристичного вида длинный коридор встретил нас."
                 "Он продолжался настолько далеко, что оставлял впечатление бесконечного"
 
@@ -338,11 +364,13 @@ label select_menu_3:
                 "Я протянул ей руку."
                 anton "Потому лучше пойдем навстречу приключениям(?) этого мира, а то Павел сейчас там загнётся совсем."
                 #(звук Девичье хихиканье 1 раз, спрайт Улыбчивая Лиза)
-
+                $ renpy.sound.play("audio/lizagiggle.ogg", loop=False, relative_volume=0.023)
                 "Хихикнув, Лиза взяла мою руку." #(+флаг Успокоили Лизу)
                 $Calmed_Lisa_down = True
             #(иначе)
             else:
+                stop music fadeout 1.0
+                play music "out_of_your_tier_7dl.ogg" volume 0.035 fadein 1.0
                 anton "С нами наш гений, он найдет дорогу обратно." #(иначе) out_of_your_tier
                 anton "В конце концов это он открыл портал в другое измерение, у него есть все знания, чтобы открыть его снова."
                 anton "Он ведь тоже хочет домой."
@@ -357,13 +385,18 @@ label select_menu_3:
 #МИНИИГРА: QTE Жонглирование. Снизу экрана вверх будет устремляться красный шарик, затем, когда он будет падать вниз, нужно успеть нажать клавишу (показывается на экране с прогрессбаром времени). Всего 12 раз. Скорость каждые 4 раза возрастает. Если не успели нажать - экран трясется, начианется заново. 3 попытки.
 label minigame:
     #звуки прекращяются
-    
+    stop music fadeout 1.0
+    stop sound fadeout 1.0
     jump startqte
 
 label qte_win:
     $ qte_comp = True
     #pixies_playing дальше играет
-    #(звук Радостный крик дети 1 раз) 
+    play music "pixies_playing_7dl.ogg" volume 0.035 fadein 1.0
+
+    #(звук Радостный крик дети 1 раз)
+    $ renpy.sound.play("audio/happy_crowd_kids.ogg", loop=False, relative_volume=0.03)
+
     kid "Смотрите, как быстро робот жонглирует!" #(в случае успеха)
 
     "Крикнул один из мальчиков, находящийся в толпе."
@@ -396,7 +429,9 @@ label qte_win:
     "И увидел перед собой Лизу, Павла и какую-то летающую железяку."
 
     #magic_is_gone
-
+    stop music fadeout 1.0
+    stop sound fadeout 1.0
+    play music "magic_is_gone_7dl.ogg" volume 0.035 fadein 1.0
     liza "Как ловко ты жонглировал формой."
     liza "Но зачем?"
 
@@ -425,11 +460,13 @@ label qte_win:
 label qte_lose:
     $ qte_comp = True
     #(звук Недовольный крик дети 1 раз, Экран трясется, эффект закрывающихся глаз, черный экран) (в случае неудачи)
+    $ renpy.sound.play("audio/unhappy_crowd_kids.ogg", loop=False, relative_volume=0.03)
     #Тряска есть в qte
     with hpunch
     with Pause(0.8)
     scene black with ImageDissolve("oko.png", 0.75, 8, reverse=False)
     
+    play music "longing_7dl.ogg" volume 0.035 fadein 1.0
     "Я не справился." #longing (thousand_of_pixies?)
 
     "В очередной раз опозорился."
@@ -448,6 +485,10 @@ label qte_lose:
     show scientist1-neutral at right
     show fly-robot_2 at center
     with Dissolve(0.2)
+
+    stop music fadeout 1.0
+    stop sound fadeout 1.0
+    play music "magic_is_gone_7dl.ogg" volume 0.035 fadein 1.0
     
     "И увидел перед собой Лизу, Павла и какую-то летающую железяку."
 
@@ -564,6 +605,11 @@ label contiune:
     #он просто может закрывать поле диолога и в итоге не красиво будет.
 
     #звук ambience_explosive_post очень тихий) музыка становится тише
+    stop sound fadeout 1.0
+    $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=False, relative_volume=0.015)
+
+    $ renpy.music.set_volume(0.5)
+
     "Я надел висящий над головой. Послышался слабый писк." #??ambience_explosive_post (похожий на речь)
 
     "И я начал изучать задание на своем столе."
@@ -579,6 +625,10 @@ label contiune:
     scene parta
 
     #(звуки пропадают)
+    stop music fadeout 1.0
+    stop sound fadeout 1.0
+
+    $ renpy.music.set_volume(1.0)
 
     jump minigame_2
 
@@ -594,6 +644,8 @@ label contiune_2:
     #(фон Классная комната)
     scene class-new
     with Dissolve(1)
+
+    play music "carefree_7dl.ogg" volume 0.03 fadein 1.0
 
     robot_teacher "И-так дети!"
 
@@ -678,6 +730,9 @@ label contiune_2:
         liza "Антон!"
         anton "Шучу, шучу. Пойдем."
 
+    stop music fadeout 1.0
+    stop sound fadeout 1.0
+
     #(фон Холл НИИ, спрайт Нейтральная Лиза, звук crowd)
     scene hall
     with Dissolve(0.5)
@@ -687,9 +742,9 @@ label contiune_2:
     with Dissolve(0.2)
 
     #звук crowd
-
+    $ renpy.sound.play("audio/crowd.ogg", loop=True, relative_volume=0.03)
     #melancholy_sun
-
+    play music "melancholy_sun_7dl.ogg" volume 0.035 fadein 1.0
     liza "И что теперь?"
     "Коридоры были забиты людьми, потому присесть нам было негде."
     liza "Нам нужно скорее найти Павла Львовича и выбираться отсюда..."
@@ -730,10 +785,13 @@ label contiune_2:
         anton "А пока наш Павлуша ищет путь домой..."
 
         #(звуки пропадают, экран темнеет, звук lizagiggle 1 раз, фон Город будущего)
+        stop music fadeout 1.0
+        stop sound fadeout 1.0
         scene black
         with Dissolve(1.2)
-
+        with Pause(1)
         #звук lizagiggle 1 раз
+        $ renpy.sound.play("audio/lizagiggle.ogg", loop=True, relative_volume=0.03)
 
         #фон Город будущего
         scene future-city
@@ -783,15 +841,19 @@ label contiune_2:
         #(звуки пропадают, экран темнеет, фон Город будущего) (иначе)
 
         #звуки пропадают
+        stop music fadeout 1.0
+        stop sound fadeout 1.0
 
         #экран темнеет
         scene black
         with Dissolve(1.2)
+        with Pause(1)
 
         #фон Город будущего
         scene future-city
 
     #lonesome_shepherd
+    play music "lonesome_shepherd_7dl.ogg" volume 0.035 fadein 1.0
 
     "Выйдя через парадную дверь, нам открылась красочная картина."
     "Город, утопающий в зелени, необычной формы небоскребы, здания, раполагающиеся на летающих платформах."
@@ -802,7 +864,11 @@ label contiune_2:
     #(звук Женский вскрик, спрайт Удивленная лиза)
     
     #звук Женский вскрик
-
+    #пока, 30-12-2023 нету звука
+    #30-12-2023 12:23: получил ответ что этого звука не будет тут
+    #но сам звук будет, класс, че могу сказать.
+    #да даже прикол в том ещё что смысл тогда писать в сюжете этот звук
+    #если его все равно не будет
 
     #спрайт Удивленная лиза
     hide lisa-unhappy
@@ -992,12 +1058,14 @@ label contiune_3:
     "Прошептал на ухо Лизе я."
 
     #genki
+    stop music fadeout 1.0
+    stop sound fadeout 1.0
+
+    play music "genki_7dl.ogg" volume 0.035 fadein 1.0
 
     anton "Бежим!"
     #(Экран на миг темнеет, спрайты пропадают, эффект бега)
     
-    #Экран на миг темнеет
-
     #спрайты пропадают
     hide lisa-smile
     with Dissolve(0.2)
@@ -1005,6 +1073,15 @@ label contiune_3:
     with Dissolve(0.2)
     hide robot2
     with Dissolve(0.2)
+
+    #Экран на миг темнеет
+    scene black
+    with Dissolve(0.4)
+
+    scene street
+    with Dissolve(0.6)
+
+    pause 1.0
 
     #эффект бега про это хз
 
@@ -1036,6 +1113,9 @@ label contiune_3:
     with Dissolve(0.2)
 
     #one_little_lone_cloud
+    stop music fadeout 1.0
+    stop sound fadeout 1.0
+    play music "one_little_lone_cloud_7dl.ogg" volume 0.035 fadein 1.0
 
     "Прошло много времени, с тех пор как мы в последний раз вместе устраивали подобные проказы."
     "Раньше наши шалости регулярно ставили на уши взрослых."
@@ -1053,14 +1133,14 @@ label contiune_3:
     anton "Мои ножки давно нуждаются в хорошем растирании!"
     
     #(Экран темнеет, фон тот же, звук ambience_tv)
+    #звук ambience_tv
+    $ renpy.sound.play("audio/ambience_tv_7dl.ogg", loop=True, relative_volume=0.025)
     hide lisa-neutral
     with Dissolve(0.2)
     scene black
     with Dissolve(1)
 
     scene street
-
-    #звук ambience_tv
 
     anton "Хорошо-оо..."
 
@@ -1144,6 +1224,10 @@ label contiune_4:
     anton "Что может вообще пойти не так?"
 
     #(спрайт Удивленный Павел, звуки пропадают)
+        
+    #звуки пропадают
+    stop music fadeout 1.0
+    stop sound fadeout 1.0
 
     #спрайт Удивленный Павел
     hide scientist1-neutral
@@ -1151,10 +1235,8 @@ label contiune_4:
     show scientist1-smile
     with Dissolve(0.2)
 
-    #звуки пропадают
-
     #are_you_there
-
+    play music "are_you_there_7dl.ogg" volume 0.035 fadein 1.0
     "В этот самый момент шедшая на телевизоре передача сменяется на \"Экстренный выпуск новостей\"."
 
     leader "Я Чед Убечев, и я сообщаю: что-то пошло не так!"
@@ -1202,8 +1284,10 @@ label contiune_4:
     pavel "Нам нужно скорее попасть в морозилку и выбираться отсюда!"
     anton "Но как?! Они же тут кругом!"
     
-
     #never_comeback
+    stop music fadeout 1.0
+    stop sound fadeout 1.0
+    play music "never_comeback_7dl.ogg" volume 0.035 fadein 1.0
 
     #(если Удачное обучение)
     if fifteen_comp:
@@ -1226,9 +1310,11 @@ label contiune_4:
         liza "Что ты собираешься делать?"
         "Спросила Лиза."
         anton "Перепрограммирую его, чтобы мы могли долететь на нём до института."
+
         #(спрайты пропадают) 
         hide lisa-smile
         with Dissolve(0.2)
+        
         "Я стал копаться во внутренностях корпуса, пока не нашел нужные провода от микросхем и не подключил их к телевизору."
         "Достав из магазина клавиатуру и еще кое-какую необходимую аппаратуру, название которой не знал, я приступил за работу."
         return
