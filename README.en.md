@@ -5,8 +5,8 @@ Visual novel for OPD (Fundamentals of project activity) UrFU (Ural Federal Unive
 The novel tells in detail about the profession of an artificial intelligence specialist, describing his duties, skills, challenges and prospects in this field.
 
 # README.md
-- en [English](../README.en.md)
-- ru [Русский](../README.md)
+- en [English](README.en.md)
+- ru [Русский](README.md)
 
 # How to launch the release version of the novel:
 Wait for it to be in the repository in the column on the right in `Releases`
