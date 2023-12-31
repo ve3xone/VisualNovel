@@ -23,6 +23,12 @@ image fantasy_anim:
         pause 1.5
         repeat
 
+init:
+    transform txt_up:
+        yalign 1.5
+        linear 15.0 yalign -1.5
+
+
 label ac3:
     hide scientist1-unhappy
     with Dissolve(0.2)
@@ -639,6 +645,21 @@ label select_5:
                     stop sound fadeout 1.0
                     $ renpy.sound.play("audio/bodyfall_7dl.ogg", loop=False, relative_volume=0.03)
                     # че-нибудь типо сделать конец и дальше титры
+
+                    pause 1.1
+
+                    scene black with dissolve
+
+                    pause 1.0 
+
+                    show text "КОНЕЦ. Бэд энд." with Dissolve(0.08)
+
+                    pause 2
+
+                    show text "goyda games: {p} {p} Дизайн - Поспелова Екатерина Дмитриевна {p} {p} Разработка - Старцев Владислав Игоревич {p} {p} Тимлид - Русин Артем Павлович {p} {p} Сценарий - Аптуликсанов Руслан Германович {p} {p} Аналитика - Кислицын Глеб Евгеньевич {p} {p} Сделанно с любовью от студентов УрФУ" at txt_up
+
+                    pause 15
+                    return
                     
         # https://www.renpy.org/doc/html/menus.html#in-game-menus    
         "Я не буду тебя слушать!" if not flipped_the_booklet and qte_losed:
@@ -821,7 +842,7 @@ label select_5:
 
                             show lisa-bigsmile at right
                             with Dissolve(0.2)
-                            
+
                             #(если Удачное обучение)
                             if fifteen_comp:
                                 liza "Антон, ты так ловко справился с этим мозгом в банке!"
@@ -868,7 +889,21 @@ label select_5:
                             anton "4 июля 2024 года."
                             "Проговорил это вслух."
                             "Прошёл ровно год."
+
                             #КОНЕЦ. Гуд энд.
+                            scene black with dissolve
+
+                            pause 1.0 
+
+                            show text "КОНЕЦ. Гуд энд." with Dissolve(0.08)
+
+                            pause 2
+
+                            show text "goyda games: {p} {p} Дизайн - Поспелова Екатерина Дмитриевна {p} {p} Разработка - Старцев Владислав Игоревич {p} {p} Тимлид - Русин Артем Павлович {p} {p} Сценарий - Аптуликсанов Руслан Германович {p} {p} Аналитика - Кислицын Глеб Евгеньевич {p} {p} Сделанно с любовью от студентов УрФУ" at txt_up
+
+                            pause 15
+                            return
+
                 else:
                     "В моём кармане лежал мешочек с конфетами." #(иначе)
 
