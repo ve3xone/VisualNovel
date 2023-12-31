@@ -174,6 +174,7 @@ label ac2:
             $Calmed_Lisa_down = False
             stop music fadeout 1.0
             stop sound fadeout 1.0
+            #проверяю 31-12-23 6-56
             jump minigame
 
         "Лиза выглядит совсем плохо":
@@ -606,7 +607,7 @@ label contiune:
 
     #звук ambience_explosive_post очень тихий) музыка становится тише
     stop sound fadeout 1.0
-    $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=False, relative_volume=0.015)
+    $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=False, relative_volume=0.005)
 
     $ renpy.music.set_volume(0.5)
 
@@ -742,7 +743,7 @@ label contiune_2:
     with Dissolve(0.2)
 
     #звук crowd
-    $ renpy.sound.play("audio/crowd.ogg", loop=True, relative_volume=0.03)
+    $ renpy.sound.play("audio/crowd.ogg", loop=True, relative_volume=0.015)
     #melancholy_sun
     play music "melancholy_sun_7dl.ogg" volume 0.035 fadein 1.0
     liza "И что теперь?"
@@ -1005,7 +1006,7 @@ label contiune_2:
         robot_moroz "Про-сто добавь-те одну кон-фету в холод-ную жидкость и ощу-тите эф-фект!"
         "Мороженщик достал пластиковый стаканчик для коктейлей, налил в неё газировки, добавив конфету, и отдал мне."
         "Я залпом выпил напиток."
-        "..." #(точки должны появлятся друг за другом) #
+        "..." #(точки должны появлятся друг за другом) #хз
 
         #(эффект резкого замерзания по краям, экран трясётся)
         #эффект резкого замерзания по краям ну хз
