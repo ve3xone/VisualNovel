@@ -465,7 +465,7 @@ label qte_lose:
     #Тряска есть в qte
     with hpunch
     with Pause(0.8)
-    scene black with ImageDissolve("oko.png", 0.75, 8, reverse=False)
+    scene black with ImageDissolve("oko.png", 0.75, 8, reverse=True)
     
     play music "longing_7dl.ogg" volume 0.035 fadein 1.0
     "Я не справился." #longing (thousand_of_pixies?)
