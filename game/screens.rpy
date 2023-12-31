@@ -286,7 +286,6 @@ style quick_button_text:
 ## другим меню и к началу игры.
 
 screen navigation():
-
     vbox:
         style_prefix "navigation"
 
@@ -349,7 +348,6 @@ style navigation_button_text:
 ## https://www.renpy.org/doc/html/screen_special.html#main-menu
 
 screen main_menu():
-
     ## Этот тег гарантирует, что любой другой экран с тем же тегом будет
     ## заменять этот.
     tag menu
