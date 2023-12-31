@@ -1,6 +1,38 @@
+image entrance-lab:
+    "scenes/entrance-lab.png"
+
+image freezer1:
+    "scenes/freezer1.png"
+
+image freezer2:
+    "scenes/freezer2.png"
+
+image cg_buklet_1_olded:
+    "scenes/cg_buklet_1_olded.png"
+
+image circus-cg_olded:
+    "scenes/circus-cg_olded.png"
+
 label ac3:
+    hide scientist1-unhappy
+    with Dissolve(0.2)
     if fifteen_comp == False:
         #(Экран гаснет, фон Вход в морозилку, спрайт Нейтральный Павел, Нейтральная Лиза)
+
+        scene black
+        with Dissolve(1.5)
+
+        #фон Вход в морозилку
+        scene entrance-lab
+        with Dissolve(0.65)
+
+        #спрайт Нейтральный Павел
+        show scientist1-neutral at left
+        with Dissolve(0.2)
+
+        #Нейтральная Лиза
+        show lisa-neutral at right
+        with Dissolve(0.2)
 
         #nowyouseeme
         stop music fadeout 1.0
@@ -17,10 +49,22 @@ label ac3:
         pavel "Слушай, мы действовали наверняка. Встреча с агрессивными роботами не сулит ничего хорошего."
         anton "Мы бы сумели дать отпор! Как тогда, на улице."
         anton "И не нужно было бы перебегать из комнаты в комнату раз в год, как трусы."
+
         #(спрайт Недовольная Лиза)
+        hide lisa-neutral at right
+        with Dissolve(0.2)
+        show lisa-unhappy at right
+        with Dissolve(0.2)
+
         liza "Мальчики, не ссортесь."
         liza "Мы уже на месте. Нужно поскорее найти портал обратно."
+
         #(спрайт Нейтральная Лиза)
+        hide lisa-unhappy at right
+        with Dissolve(0.2)
+        show lisa-neutral at right
+        with Dissolve(0.2)
+
         pavel"Да, точно."
         "Физик подошёл к небольшой металлической двери и, что-то быстро набрав на боковой панели, открыл её."
         jump contiune_5
@@ -32,7 +76,9 @@ label ac3:
     "Руки работают, видят глаза. Порхай, как бабочка, жаль, что я не умею управлять роботами."
 
     #(фон Вход в морозилку, экран трясется)
-
+    scene entrance-lab
+    with Dissolve(0.65)
+    pause 0.5
     with hpunch
     with Pause(1.2)
 
@@ -44,18 +90,35 @@ label ac3:
     "На большой скорости мы влетели в незакрытое окно одного из этажей химико-биологического отделения института."
     "Находившись спереди и пытаясь худо-бедно управлять летательным аппаратом, я принял весь удар на себя."
     anton "Ты в порядке?"
+
     #(спрайт Удивленная Лиза)
+    show lisa-smile
+    with Dissolve(0.2)
+
     "Обратился я к Лизе, что сидела позади и врезалась мне в спину."
     liza "Со мной все хорошо, но в порядке ли ты?"
     "На удивление, я почти не чувствовал боли."
     "Это у меня с детства. Помню, когда я случайно чуть не отрезал себе палец, пока нарезал морковь."
     "Мать тогда так кричала, а я не понимал, зачем беспокоится, ведь не больно совсем."
-    "`Это, вроде, болезнь такая?`"
+    "Это, вроде, болезнь такая?"
     anton "Разве что только голова болит."
     "Улыбнувшись, сообщил я."
+
     #(спрайт Нейтральная Лиза)
+    hide lisa-smile
+    with Dissolve(0.2)
+    show lisa-neutral
+    with Dissolve(0.2)
+
     "Наш импровизированный летательный аппарат не выдержал столкновения с суровой реальностью и окончательно вышел из строя."
+
     #(спрайт Нейтральный Павел)
+    hide lisa-neutral
+    with Dissolve(0.4)
+    pause 0.1
+    show scientist1-neutral
+    with Dissolve(0.2)
+
     "Физик вовремя успел ловко отскочить, потому никак не пострадал и уже стоял на ногах."
     pavel "Мы как раз там, где нужно."
     "Торжественно сообщил Павел."
@@ -65,10 +128,18 @@ label ac3:
 
 label contiune_5:
     #(спрайты пропадают, звук open_vault, фон Морозилка первая комната)
+    hide lisa-neutral
+    with Dissolve(0.2)
+    hide scientist1-neutral
+    with Dissolve(0.2)
     stop music fadeout 1.0
     stop sound fadeout 1.0
     pause 1.0
     $ renpy.sound.play("audio/open_vault_7dl.ogg", loop=False, relative_volume=0.02)
+
+    #фон Морозилка первая комната
+    scene freezer1
+    with Dissolve(0.5)
 
     #krwling
     play music "krwling_7dl.ogg" volume 0.035 fadein 1.0
@@ -77,23 +148,31 @@ label contiune_5:
     "Температура в морозилке стояла ниже нуля, из-за чего мои движения начало немного сковывать."
 
     #(спрайт Нейтральный Павел)
+    show scientist1-neutral
+    with Dissolve(0.3)
 
     pavel "Где-то здесь должна быть нужная нам дверь."
     pavel "Смотрите внимательней, ей может быть любая, даже дверь от холодильника."
 
     #(спрайты пропадают)
+    hide scientist1-neutral
+    with Dissolve(0.3)
 
     "Мы приступили к осмотру."
     "Помимо разнообразных пробирок и коробок с подписями, типа \"Гриб В.И. НЕ ТРОГАТЬ!\" или \"Это на новый год\", ничего путного в первой комнате я не нашёл."
 
     #(фон Морозилка вторая комната)
+    scene freezer2
+    with Dissolve(0.5)
 
+    #open_vault
+    $ renpy.sound.play("audio/open_vault_7dl.ogg", loop=False, relative_volume=0.02)
 
-    "open_vault во вторую комнату была распахнута, её магнитный замок был сломан."
+    "Дверь во вторую комнату была распахнута, её магнитный замок был сломан."
     "В углу помещения во всю высоту стояла банка, в которой плыл огромный человеческий мозг."
     "К банке были подключены насосами две цистерны с жидкостью, надпись на которых гласила \"COPIUM\"."
     "Аппаратура рядом с мозгом была выключена."
-    "`Из-за сбоя этот мозг погиб?`"
+    "Из-за сбоя этот мозг погиб?"
     "Я подошёл к компьютерам, в надежде включить их."
 
     unknown_voice "N€уж€ли эт0 LYчшuе люDишки, которЬiх 0тп®αви/\и уни4™0///&ть мен¶?" #(много непонятных символов, с перехватом создания, буквы будут становится чётче)
@@ -118,6 +197,8 @@ label contiune_5:
     anton "Мозг?"
 
     #(спрайт Удивленная Лиза)
+    show lisa-smile
+    with Dissolve(0.2)
 
     liza "С кем ты разговариваешь?"
 
@@ -130,10 +211,16 @@ label contiune_5:
     "Возразила она."
 
     #(спрайт Нейтральный Павел)
+    hide lisa-smile
+    with Dissolve(0.2)
+    show scientist1-neutral
+    with Dissolve(0.35)
 
     "А физик лишь задумчиво оглядел комнату и что-то шепнул Лизе."
 
     #(спрайты пропадают)
+    hide scientist1-neutral
+    with Dissolve(0.2)
 
     megabrain "ОHi Nе s/\ышат mеμя, но s/\ыш?шЬ ты. Ето 3αmе4ате/\ьhо."
     megabrain "Ты ///е пон?mаешь, что Y ваs ни4еgо нε по/\Yч?тс¶?"
@@ -175,10 +262,14 @@ label contiune_5:
 
     "Громко засмеялся мегамозг."
 
-    #(звук ambience_explosive_post тихий, экран чуть краснеет по краям) 
+    #(звук ambience_explosive_post тихий, экран чуть краснеет по краям)
     stop sound fadeout 1.0
     pause 1
     $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.010)
+
+    #экран чуть краснеет по краям
+    #я не дизайнер...
+    show red
 
     #(писк и краснение экрана нарастает линейно, далее увеличение воспринимать, как +1 уровень к имеющемуся)
     "Появился звон в ушах." 
@@ -186,6 +277,12 @@ label contiune_5:
     megabrain "Но, я Nαдеюζь, вы нξ зαδыли о zvoей цели, mиζтεр АнΔеρсон."
 
     #(флэшбек на фон с буклетом, коричневый фильтр)
+    #так как это работа дизайнера вообщето сразу нарисовать такие спрайты чтоб я их показывал и все
+    show cg_buklet_1_olded
+    with Dissolve(3)
+    pause 2
+    hide red
+    hide cg_buklet_1_olded
 
     "Ноги немного подкосились."
 
@@ -207,10 +304,23 @@ label contiune_5_select_2:
         megabrain "Дα, тебе пришлось неζлαдко. ТVойо стремление k свобоΔе стоило доρ0Го. Ты πоmnишь это?"
 
         #(флэшбек на фон с цирком, коричневый фильтр)
+        #эххх... опять работа дизайнера....
+        #я не дизайнер ну ок
+        #да и ещё же сам фон с цирком и так коричневый выглядить может хуже намного не?
+        show circus-cg_olded
+        with Dissolve(3)
+        pause 4.5
+        hide circus-cg_olded
+        pause 1
 
-        #(звук ambience_explosive_post становится громче, экран краснеет) 
+        #(звук ambience_explosive_post становится громче, экран краснеет)
         stop sound fadeout 0.5
         $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.015)
+
+        #экран краснеет
+        #ну я не дизайнер...
+        show red
+        with Dissolve(2)
 
         "Звон в ушах усилился."
 
