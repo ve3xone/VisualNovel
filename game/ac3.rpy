@@ -13,6 +13,16 @@ image cg_buklet_1_olded:
 image circus-cg_olded:
     "scenes/circus-cg_olded.png"
 
+image cafe:
+    "scenes/cafe.png"
+
+image fantasy_anim:
+        "images/scenes/fantasy_dark.jpg" with Dissolve(1.5)
+        pause 1.5
+        "images/scenes/fantasy_light.jpg" with Dissolve(1.5)
+        pause 1.5
+        repeat
+
 label ac3:
     hide scientist1-unhappy
     with Dissolve(0.2)
@@ -358,9 +368,14 @@ label contiune_5_select_3:
                 megabrain "Ты знаешь, чеMM настоящий рαзyм оꞱличается от искусственноgо? Цеλью."
                 megabrain "Настоящий рαзyм mожет жить δез цели, а иskусственньiй нет. Остаvь, наконец, навя3аnnые цели и стаnь чеλθвеком."
 
-                #(звук ambience_explosive_post становится громче, экран краснеет) 
+                #(звук ambience_explosive_post становится громче, экран краснеет)
+                #бля нужен спрайт экран краснеет и все епты
                 stop sound fadeout 0.5
                 $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.02)
+                hide red
+                show red
+                with Dissolve(2)
+
                 "Боль в висках нарастала."
 
                 liza "Антон, что с тобой происходит?"
@@ -387,6 +402,9 @@ label contiune_5_select_3:
             #2. (звук ambience_explosive_post становится громче, экран краснеет) 
             stop sound fadeout 0.5
             $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.02)
+            hide red
+            show red
+            with Dissolve(2)
             
             "Звон в ушах усилился."
             
@@ -400,6 +418,11 @@ label contiune_5_select_3:
             #3. (звуки пропадают, экран возвращается в норму)
             stop music fadeout 1.0
             stop sound fadeout 1.0
+            hide red
+            with Dissolve(2)
+            #(фон Морозилка вторая комната)
+            scene freezer2
+            with Dissolve(0.5)
 
             "Нечего тут понимать."
             
@@ -424,13 +447,24 @@ label select_5:
             jump select_5_select_1
         "Зачем ты это делаешь?" if not kto_ti:
             label select_5_select_1:
-                
                 if not Calmed_Lisa_down:
                     jump select_5_select_2
                 # (иначе)
                 else:
                     #(Эффект пощечины, экран трясется, звук slap 1 раз, спрайт Недовольная Лиза)
+                    #(фон Морозилка вторая комната)
+                    scene freezer2
+                    with Dissolve(0.5)
+
+                    #экран трясется
+                    with hpunch
+
                     $ renpy.sound.play("audio/slap.ogg", loop=False, relative_volume=0.025)
+
+                    #спрайт Недовольная Лиза
+                    show lisa-unhappy
+                    with Dissolve(0.2)
+
                     "Шлепок по щеке привел меня в чувства."
 
                     liza "Антон!"
@@ -446,6 +480,8 @@ label select_5:
                             #2. (звуки пропадают, экран возвращается в норму)
                             stop music fadeout 1.0
                             stop sound fadeout 1.0
+                            hide red
+                            with Dissolve(2)
 
                             "Она права. Мне нужно прийти в себя."
 
@@ -456,6 +492,9 @@ label select_5:
                             jump select_5_select_3
                 label select_5_select_2:
                     #(звук ambience_explosive_post становится громче, звук heartbeat, экран краснеет)
+                    hide red
+                    show red
+                    with Dissolve(2)
                     stop sound fadeout 0.5
                     $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.03)
                     $ renpy.sound.play("audio/heartbeat_7dl.ogg", loop=False, relative_volume=0.025)
@@ -482,13 +521,21 @@ label select_5:
                     #(звуки пропадают, экран трясется, эффект закрывающихся глаз, звук bodyfall, черный экран)
                     stop music fadeout 1.0
                     stop sound fadeout 1.0
+                    
+                    #экран трясется
+                    with vpunch
+
+                    #эффект закрывающихся глаз
+                    scene black with ImageDissolve("oko.png", 0.75, 8, reverse=True)
 
                     $ renpy.sound.play("audio/bodyfall_7dl.ogg", loop=False, relative_volume=0.025)
                     "..."
 
                     #hell
                     play music "hell_7dl.ogg" volume 0.035 fadein 1.0
+                    
                     #(фон Фантазия)
+                    scene fantasy_anim
 
                     unknown_she "Антон! Посмотри. Кажется, заработало!"
                     unknown_she "Да, да, он встаёт на ноги!"
@@ -519,6 +566,7 @@ label select_5:
 
                     #(звуки dropw, Женский вскрик, dirt 1 раз)
                     stop sound fadeout 1.0
+                    pause 0.5
                     $ renpy.sound.play("audio/dropw_7dl.ogg", loop=False, relative_volume=0.025)
                     pause 1.1
                     $ renpy.sound.play("audio/lizascream.ogg", loop=False, relative_volume=0.025)
@@ -530,6 +578,7 @@ label select_5:
 
                     #(звук gavel_knock_three 1 раз) 
                     stop sound fadeout 1.0
+                    pause 0.5
                     $ renpy.sound.play("audio/gavel_knock_three.ogg", loop=False, relative_volume=0.03)
 
                     unknown_voice "По причине проявления крайней агрессии к человечеству и нанесения тяжких телесных повреждений двум ведущим специалистам НИИ."
@@ -540,6 +589,7 @@ label select_5:
                     #(звук gavel_knock_one 1 раз)
                     stop sound fadeout 1.0
                     $ renpy.sound.play("audio/gavel_knock_one.ogg", loop=False, relative_volume=0.03)
+
                     unknown_voice "Решение принято." # (`Стук деревянным молоточком`, но как звук это будет)
 
                     unknown_voice "А теперь, выключите эту штуку. Формальности соблюдены, приговор оглашён."
@@ -550,10 +600,12 @@ label select_5:
                     stop music fadeout 1.0
                     stop sound fadeout 1.0
                     play music "herc_death_7dl.ogg" volume 0.035 fadein 1.0
+
                     "Я всё вспомнил." #(добавить про то, что его отослали в иной мир?)
 
                     #(Экран по краям черный, фон тот же)
-
+                    # Запуск экрана с черными краями
+                    show black_
                     "В комнате воцарил хаос."
                     "Разбросанные коробки, разбитые пробирки, перевернутые стилажи."
                     "Лужи воды и следы крови."
@@ -576,7 +628,7 @@ label select_5:
 
                     megabrain "Зачем ты отключил питание от мозга?!"
 
-                    "Слуховой модуль. Отключить. Аппарат распознавания речи. Отключить." #предложения должны появляться по клику
+                    "Слуховой модуль. Отключить. Аппарат распознавания речи. Отключить." #предложения должны появляться по клику #хз
 
                     "Я не хотел больше его слышать."
                     "Не хотел больше ничего слышать."
@@ -584,6 +636,9 @@ label select_5:
                     "Зрительный модуль. Отключить."
 
                     # iamsadiamsorry / meetmethere (звук bodyfall 1 раз) КОНЕЦ. Бэд энд.
+                    stop sound fadeout 1.0
+                    $ renpy.sound.play("audio/bodyfall_7dl.ogg", loop=False, relative_volume=0.03)
+                    # че-нибудь типо сделать конец и дальше титры
                     
         # https://www.renpy.org/doc/html/menus.html#in-game-menus    
         "Я не буду тебя слушать!" if not flipped_the_booklet and qte_losed:
@@ -711,16 +766,27 @@ label select_5:
                             i_pavel_liza "До свидания."
 
                             #(Экран гаснет)
+                            scene black
+                            with Dissolve(1)
 
                             "..."
 
                             #(фон Кафе, спрайт Нейтральный Павел, Улыбчивая Лиза)
+                            scene cafe
+                            with Dissolve(1)
+
+                            show scientist1-neutral at left
+                            with Dissolve(0.2)
+
+                            show lisa-bigsmile at right
+                            with Dissolve(0.2)
 
                             #happy_ending
                             stop music fadeout 1.0
                             play music "happy_ending_7dl.ogg" volume 0.035 fadein 1.0
 
                             anton "Фуух... Необычный денёк вышел." #my_only_hope
+                            $ renpy.sound.play("audio/my_only_hope_7dl.ogg", loop=True, relative_volume=0.02)
 
                             "Устало проговорил я."
 
@@ -742,12 +808,20 @@ label select_5:
                             pavel "Далеко не каждый студент обладает таким рвением к науке."
                             anton "Э-э, да, это мы."
 
-                            #(спрайт Смущенная Лиза) 
-
+                            #(спрайт Смущенная Лиза)
+                            hide lisa-bigsmile
+                            with Dissolve(0.2)
+                            show lisa-smile at right
+                            with Dissolve(0.2)
                             "Лиза немного покраснела."
 
                             #(спрайт Улыбчивая Лиза)
+                            hide lisa-smile
+                            with Dissolve(0.2)
 
+                            show lisa-bigsmile at right
+                            with Dissolve(0.2)
+                            
                             #(если Удачное обучение)
                             if fifteen_comp:
                                 liza "Антон, ты так ловко справился с этим мозгом в банке!"
