@@ -30,6 +30,34 @@ default fifteen_ac3 = False
 # Игра начинается здесь:
 label start:
 
+    #типо печатает на клавиатуре
+    show text "g" with Dissolve(0.08)
+    show text "go" with Dissolve(0.08)
+    show text "goy" with Dissolve(0.08)
+    show text "goyd" with Dissolve(0.08)
+    show text "goyda" with Dissolve(0.08)
+    show text "goyda " with Dissolve(0.08)
+    show text "goyda g" with Dissolve(0.08)
+    show text "goyda ga" with Dissolve(0.08)
+    show text "goyda gam" with Dissolve(0.08)
+    show text "goyda game" with Dissolve(0.08)
+    show text "goyda games" with Dissolve(0.08)
+    show text "goyda games " with Dissolve(0.08)
+    show text "goyda games п" with Dissolve(0.08)
+    show text "goyda games пр" with Dissolve(0.08)
+    show text "goyda games пре" with Dissolve(0.08)
+    show text "goyda games пред" with Dissolve(0.08)
+    show text "goyda games предс" with Dissolve(0.08)
+    show text "goyda games предст" with Dissolve(0.08)
+    show text "goyda games предста" with Dissolve(0.08)
+    show text "goyda games представ" with Dissolve(0.08)
+    show text "goyda games представл" with Dissolve(0.08)
+    show text "goyda games представля" with Dissolve(0.08)
+    show text "goyda games представляе" with Dissolve(0.08)
+    show text "goyda games представляет" with Dissolve(0.08)
+
+    pause 1.5
+
     call ac1 from _call_ac1
     
     call ac2 from _call_ac2
