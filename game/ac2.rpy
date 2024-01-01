@@ -4,6 +4,9 @@ image lab2:
 image circus-cg:
     "scenes/circus-cg.png"
 
+image hallway:
+    "scenes/university-hall.png"
+
 image hall:
     "scenes/hall.png"
 
@@ -17,9 +20,6 @@ image street:
     "scenes/street.png"
 
 label ac2:
-    #(музыка пропадает)
-    stop music fadeout 2
-
     "На секунду все звуки будто исчезли."
     
     #nap_one типо музыка
@@ -46,10 +46,10 @@ label ac2:
     #(фон Заброшенная лаборатория, спрайт Удивленная Лиза, спрайт Удивленный Павел)
     scene lab2
     hide lisa-unhappyneutral 
-    with Dissolve(0.2)
-    show lisa-unhappyneutral at center
     show scientist1-unhappy at right
     with Dissolve(0.3)
+    show lisa-unhappy at center
+    with Dissolve(0.2)
     "От открывшейся картины у Лизы округлились глаза. А и не знал что думать."
     "Перед нами была заброшенная лаборатория, точная копия той, в которой мы были минуту назад."
     "Количество пыли и отсутствие какого либо оборудования создавало ощущение, что комната не используется уже долгое время."
@@ -59,7 +59,7 @@ label ac2:
     "Неуверенно подала голос Лиза."
 
     #(спрайт Нейтральный Павел)
-    hide lisa-unhappyneutral
+    hide lisa-unhappy
     hide scientist1-unhappy
     with Dissolve(0.2)
     show scientist1-unhappy
@@ -76,7 +76,7 @@ label ac2:
     #(спрайт Улыбчивый Павел)
     hide scientist1-unhappy
     with Dissolve(0.2)
-    show scientist1-bigsmile
+    show scientist1-smile
     with Dissolve(0.3)
 
     pavel "За то что отправили преподавателя в другой мир."
@@ -84,7 +84,7 @@ label ac2:
     "Слегка улыбнувшись, добавил Павел."
 
     #(спрайт Нейтральный Павел)
-    hide scientist1-bigsmile
+    hide scientist1-smile
     with Dissolve(0.2)
     show scientist1-neutral
     with Dissolve(0.3)
@@ -213,7 +213,6 @@ label select_menu_2:
             "Пробуждало интерес. Как у первооткрывателя."
             liza "А-а с чего ты взял, что мы вообще вернёмся?" 
             "Почти плача, спросила Лиза."
-            $Select_1_and_3 = True
             jump select_menu_3
         "«Я и сам не понимаю»":
             #i_will_find_you sound
@@ -237,7 +236,7 @@ label select_menu_2:
             with Dissolve(0.2)
             liza "А с чего ты взял, что мы вообще вернемся обратно?"
             "Шмыгнув носом, спросила Лиза."
-            $Select_1_and_3 = False
+            $Select_2_and_3 = True
             jump select_menu_3
         "«Физик знает»":
             anton "Он сказал, что мы в параллельной реальности. Или типа того."
@@ -258,7 +257,7 @@ label select_menu_2:
             "Шмыгнув носом, спросила Лиза."
             "Резкость её вопроса немного пошатнула мою уверенность."
             "Я верю в физика, но знает ли он на самом деле, что делать?"
-            $Select_1_and_3 = True
+            $Select_2_and_3 = True
             jump select_menu_3
 
 #ВЫБОР: 1. «Я не знаю» 2. «Только не плачь» 3. «За это я не переживаю.»
@@ -291,7 +290,7 @@ label select_menu_3:
                     "Собравшись с духом, мы вышли наружу."
 
                 #(фон Коридор НИИ)
-                scene hall
+                scene hallway
 
                 stop music fadeout 1.0
                 stop sound fadeout 1.0
@@ -310,7 +309,7 @@ label select_menu_3:
                     hide lisa-neutral
                     hide lisa-unhappy
                     with Dissolve(0.3)
-                    show lisa-unhappyneutral at left
+                    show lisa-smile at left
                     liza "Ва-ау" 
                     "Восторженно сказала Лиза."
                 
@@ -346,6 +345,13 @@ label select_menu_3:
                     "А вот и неприятности."
 
                 "Но этот робот не выглядел угрожающе."
+                
+                hide lisa-smile
+                # hide lisa-neutral ? !
+                with Dissolve(0.3)
+                show lisa-neutral at left
+                with Dissolve(0.3)
+                
                 robot "Пред-явите ваш пропуск."
                 pavel "Видете ли, мы..."
                 "Начал было физик, как вдруг робот ослепил его лазерным лучём."
@@ -357,9 +363,9 @@ label select_menu_3:
         #"«Только не плачь»":
         #    jump vopros_1
         "«За это я не переживаю.»":
-            #(Если до выбраны 1. или 3. варианты) #хз че куда
-            if Select_1_and_3:
-                anton "С нами наш гений, он найдет дорогу обратно." #(Если до выбраны 1. или 3. варианты) hll
+            #(Если до выбраны 2. или 3. варианты) #хз че куда
+            if Select_2_and_3:
+                anton "С нами наш гений, он найдет дорогу обратно." #(Если до выбраны 2. или 3. варианты) hll
                 anton "В конце концов это он открыл портал в другое измерение, у него есть все знания, чтобы открыть его снова."
                 anton "Он ведь тоже хочет домой."
                 "Я протянул ей руку."
@@ -386,7 +392,7 @@ label select_menu_3:
 #МИНИИГРА: QTE Жонглирование. Снизу экрана вверх будет устремляться красный шарик, затем, когда он будет падать вниз, нужно успеть нажать клавишу (показывается на экране с прогрессбаром времени). Всего 12 раз. Скорость каждые 4 раза возрастает. Если не успели нажать - экран трясется, начианется заново. 3 попытки.
 label minigame:
     #звуки прекращяются
-    stop music fadeout 1.0
+    # stop music fadeout 1.0
     stop sound fadeout 1.0
     jump startqte
 
@@ -419,19 +425,20 @@ label qte_win:
 
     #(Эффект моргания, фон Коридор НИИ, спрайт Удивленная Лиза, Нейтральный Павел, спрайт Летающий робот)
     scene black with ImageDissolve("oko.png", 0.75, 8, reverse=True)
-    scene hall with ImageDissolve("oko.png", 0.75, 8, reverse=False)
+    scene hallway with ImageDissolve("oko.png", 0.75, 8, reverse=False)
     with Dissolve(0.2)
     #scene hall
     show lisa-smile at left
     show scientist1-neutral at right
     show fly-robot_2 at center
     with Dissolve(0.2)
+
+    stop music fadeout 1.0
+    stop sound fadeout 1.0
     
     "И увидел перед собой Лизу, Павла и какую-то летающую железяку."
 
     #magic_is_gone
-    stop music fadeout 1.0
-    stop sound fadeout 1.0
     play music "magic_is_gone_7dl.ogg" volume 0.035 fadein 1.0
     liza "Как ловко ты жонглировал формой."
     liza "Но зачем?"
@@ -481,7 +488,7 @@ label qte_lose:
     "Я открыл глаза."
 
     #(Эффект моргания, фон Коридор НИИ, спрайт Удивленная Лиза, Нейтральный Павел, спрайт Летающий робот)
-    scene hall with ImageDissolve("oko.png", 0.75, 8, reverse=False)
+    scene hallway with ImageDissolve("oko.png", 0.75, 8, reverse=False)
     show lisa-smile at left
     show scientist1-neutral at right
     show fly-robot_2 at center
@@ -489,9 +496,10 @@ label qte_lose:
 
     stop music fadeout 1.0
     stop sound fadeout 1.0
-    play music "magic_is_gone_7dl.ogg" volume 0.035 fadein 1.0
     
     "И увидел перед собой Лизу, Павла и какую-то летающую железяку."
+
+    play music "magic_is_gone_7dl.ogg" volume 0.035 fadein 1.0
 
     "Я сидел на полу, рядом со мной лежало несколько комплектов странной униформы серого цвета."
 
@@ -537,6 +545,7 @@ label contiune:
 
     pause(1.8)
     hide scientist1-neutral
+    hide lisa-neutral
     with Dissolve(0.2)
     hide fly-robot_2_revert
     show fly-robot_2_revert:
@@ -607,7 +616,7 @@ label contiune:
 
     #звук ambience_explosive_post очень тихий) музыка становится тише
     stop sound fadeout 1.0
-    $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=False, relative_volume=0.005)
+    $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=False, relative_volume=0.002)
 
     $ renpy.music.set_volume(0.5)
 
@@ -626,7 +635,7 @@ label contiune:
     scene parta
 
     #(звуки пропадают)
-    stop music fadeout 1.0
+    # stop music fadeout 1.0
     stop sound fadeout 1.0
 
     $ renpy.music.set_volume(1.0)
@@ -736,11 +745,11 @@ label contiune_2:
 
     #(фон Холл НИИ, спрайт Нейтральная Лиза, звук crowd)
     scene hall
-    with Dissolve(0.5)
+    with Dissolve(1.5)
     hide lisa-neutral
-    with Dissolve(0.2)
+    with Dissolve(0.5)
     show lisa-neutral
-    with Dissolve(0.2)
+    with Dissolve(0.5)
 
     #звук crowd
     $ renpy.sound.play("audio/crowd.ogg", loop=True, relative_volume=0.015)
@@ -752,7 +761,7 @@ label contiune_2:
     # (спрайт Удивленная Лиза)
     hide lisa-neutral
     with Dissolve(0.2)
-    show lisa-smile
+    show lisa-unhappyneutral
     with Dissolve(0.2)
     anton "Подожди."
     "Оборвал её фразу я."
@@ -767,7 +776,7 @@ label contiune_2:
     #(если Успокоили Лизу)
     if Calmed_Lisa_down:
         #(спрайт Грустная Лиза)
-        hide lisa-smile
+        hide lisa-unhappyneutral
         with Dissolve(0.2)
         show lisa-unhappy
         with Dissolve(0.2)
@@ -779,6 +788,8 @@ label contiune_2:
         "Тихо произнесла она."
         liza "А вдруг у Павла Львовича не получится найти портал, и мы останемся здесь навсегда?"
         anton "Тогда нам надо искать место для ночлега."
+        hide lisa-unhappy
+        show lisa-neutral
         "Шутливо протянул Антон."
         anton "Я полностью уверен в нашем физике."
         anton "Он точно найдет дорогу обратно, ему надо дать немного времени."
@@ -788,11 +799,10 @@ label contiune_2:
         #(звуки пропадают, экран темнеет, звук lizagiggle 1 раз, фон Город будущего)
         stop music fadeout 1.0
         stop sound fadeout 1.0
+        $ renpy.sound.play("audio/lizagiggle.ogg", loop=False, relative_volume=0.03) #звук lizagiggle 1 раз
         scene black
         with Dissolve(1.2)
         with Pause(1)
-        #звук lizagiggle 1 раз
-        $ renpy.sound.play("audio/lizagiggle.ogg", loop=True, relative_volume=0.03)
 
         #фон Город будущего
         scene future-city
@@ -800,9 +810,9 @@ label contiune_2:
     #(иначе)
     else:
         #(спрайт Недовольная Лиза)
-        hide lisa-smile
+        hide lisa-unhappyneutral
         with Dissolve(0.2)
-        show lisa-unhappyneutral
+        show lisa-angry
         with Dissolve(0.2)
 
         liza "Я тороплюсь поскорее вернутся домой."
@@ -818,10 +828,10 @@ label contiune_2:
         liza "А может его схватили эти роботы, как самозванца, и сейчас пытают, чтобы узнать, кто он такой и почему его генетический код отличается от представителей здешней цивилизации?!"
         "Почти крича, возмущалась Лиза."
         liza "А может он уже нашёл портал и ушёл без нас, просто \"проверяя его работоспособность\"?"
-        anton "Ну все, все."
+        anton "Ну всё, всё."
 
         #(спрайт Нейтральная Лиза)
-        hide lisa-unhappyneutral
+        hide lisa-angry
         with Dissolve(0.2)
         show lisa-neutral
         with Dissolve(0.2)
@@ -869,15 +879,9 @@ label contiune_2:
     #30-12-2023 12:23: получил ответ что этого звука не будет тут
     #но сам звук будет, класс, че могу сказать.
     #да даже прикол в том ещё что смысл тогда писать в сюжете этот звук
-    #если его все равно не будет
+    #если его все равно не будет (не нашел я подходящий, че ты епт)
 
     #спрайт Удивленная лиза
-    hide lisa-unhappy
-    with Dissolve(0.2)
-    hide lisa-neutral
-    with Dissolve(0.2)
-    show lisa-smile
-    with Dissolve(0.2)
 
     "Я схватил неуклюжую Лизу за руку."
 
@@ -888,16 +892,12 @@ label contiune_2:
     liza "Ой, все нормально, я в порядке."
 
     #(спрайт Нейтральная Лиза)
-    hide lisa-smile
-    with Dissolve(0.2)
-    show lisa-neutral
-    with Dissolve(0.2)
 
     "Кажется, по этой части платформы не ходят."
     "Заведение, в котором мы оказались, носило название \"НИИЧАВО\"."
     "Чуть поодаль от главного входа находился небольшой памятник."
     "Высокий, крепкий мужчина в очках, а на постаменте имя - Б. Стругацкий."
-    "Основатель."
+    "`Основатель.`"
     "Подумал я."
     "А мы двинулись дальше."
 
@@ -938,7 +938,7 @@ label contiune_2:
 
     robot "Моро-женного не жела-ете?"
 
-    "Проговорил усатый робот в смешном фартуке мороженщика."
+    "Проговорил маленький робот, стоящий за тележкой с надписью \"мороженное\"." # "Проговорил усатый робот в смешном фартуке мороженщика."
 
     #(Если Удачное обучение)
     if fifteen_comp:
@@ -972,7 +972,7 @@ label contiune_2:
         jump contiune_3
     # (иначе)
     else:
-        lisa "Я хочу."
+        liza "Я хочу."
         "Сказала мороженщику Лиза."
         robot_moroz "Мо-гу пред-ложить вам клуб-ничный, ле-ди."
 
@@ -982,7 +982,7 @@ label contiune_2:
         show lisa-smile at right
         with Dissolve(0.2)
 
-        lisa "Устроит."
+        liza "Устроит."
         "Робот передал Лизе мороженное."
         robot_moroz "А ва-м, моло-дой чело-век?"
         anton "А я... О! У вас есть эти \"замораживающие\" конфеты!"
@@ -998,9 +998,9 @@ label contiune_2:
 
         anton "Они пользовались большой популярностью среди подростков, блягодаря своему эффекту."
         anton "Заморозка мозга!"
-        lisa "И откуда... ты это знаешь?"
+        liza "И откуда... ты это знаешь?"
         "Едя своё мороженное, спросила Лиза."
-        lisa "Ты же никогда таким не интересовался."
+        liza "Ты же никогда таким не интересовался."
         anton "Не знаю, но я хочу это попробовать."
         robot_moroz "Вер-но! В на-шем инсти-туте произ-во-дятся такие кон-феты в рам-ках изу-чения куль-тур друг-их стран."
         robot_moroz "Про-сто добавь-те одну кон-фету в холод-ную жидкость и ощу-тите эф-фект!"
@@ -1025,7 +1025,7 @@ label contiune_2:
         anton "А можно мне ещё таких, хочу взять мешочек."
         robot_moroz "Целый ме-шочек? А не мно-го ли вам бу-дет?"
         anton "Я возьму прозапас, уж очень они мне понравились."
-        robot_moroz "Хоро-шо, толь-ко пом-ните, не боль-ше од-ной кон-феты за ра-з!"
+        robot_moroz "Хоро-шо, толь-ко пом-ните, не боль-ше од-ной кон-феты за раз!"
         "Робот передал мне целый мешочек этих конфет."
 
         #(спрайт Хитрая Лиза) 
@@ -1132,16 +1132,18 @@ label contiune_3:
     "Уличный массаж."
 
     anton "Мои ножки давно нуждаются в хорошем растирании!"
-    
+    # jump contiune_4
+ 
+label contiune_4:
     #(Экран темнеет, фон тот же, звук ambience_tv)
     #звук ambience_tv
-    $ renpy.sound.play("audio/ambience_tv_7dl.ogg", loop=True, relative_volume=0.025)
+    $ renpy.sound.play("audio/ambience_tv_7dl.ogg", loop=True, relative_volume=0.75)
     hide lisa-neutral
     with Dissolve(0.2)
     scene black
     with Dissolve(1)
 
-    scene street
+    scene street with Dissolve(1)
 
     anton "Хорошо-оо..."
 
@@ -1149,7 +1151,6 @@ label contiune_3:
     "Лиза также получает удовольствие от массирования её спины роботом."
     "Сбоку от меня, на витрине из портативного телевизора диктор вещал об очередных достижениях страны в чем-то там."
 
-label contiune_4:
     #(эффект закрывающихся глаз, черный экран)
     scene black with ImageDissolve("oko.png", 0.75, 8, reverse=True)
 
@@ -1208,7 +1209,7 @@ label contiune_4:
 
     "Ответил физик."
 
-    pavel "На удивление, эти мозги правильно предсказали, где вы находились."
+    pavel "На удивление, эти мозги правильно предсказали, где вы находитесь."
     pavel "А теперь идёмте, нам нужно торопится."
     anton "Ну куда торопится?"
     "Я снял выдуманные очки."
@@ -1233,7 +1234,7 @@ label contiune_4:
     #спрайт Удивленный Павел
     hide scientist1-neutral
     with Dissolve(0.2)
-    show scientist1-smile
+    show scientist1-unhappy
     with Dissolve(0.2)
 
     #are_you_there
@@ -1248,12 +1249,12 @@ label contiune_4:
 
     "Ведущий пропадает с экрана и на его место становится его точная роботизированная копия."
 
-    robot_leader "Во имя наше-го Покро-вите-ля–Отца мы проба-тим вас людиш-ки. Ха-ха-ха!"
+    robot_leader "Во имя наше-го Покро-вите-ля–Отца мы порабо-тим вас людиш-ки. Ха-ха-ха!"
 
     "Чего?.."
 
     #(Экран трясется, эффект закрывающихся глаз, спрайты пропадают, черный экран)
-    hide scientist1-smile
+    hide scientist1-unhappy
     with Dissolve(0.2)
     with hpunch
     with Pause(1)
@@ -1284,19 +1285,19 @@ label contiune_4:
     pavel "Сами они этого сделать не могут."
     pavel "Нам нужно скорее попасть в морозилку и выбираться отсюда!"
     anton "Но как?! Они же тут кругом!"
-    
-    #never_comeback
-    stop music fadeout 1.0
-    stop sound fadeout 1.0
-    play music "never_comeback_7dl.ogg" volume 0.035 fadein 1.0
 
     #(если Удачное обучение)
     if fifteen_comp:
+        #never_comeback
+        stop music fadeout 2.5
+        stop sound fadeout 2.5
+        play music "never_comeback_7dl.ogg" volume 0.035 fadein 2.5
+        
         #(спрайты пропадают) 
         hide scientist1-unhappy
         with Dissolve(0.2)
 
-        anton "Я взглянул на лежащих железяк."
+        "Я взглянул на лежащих железяк."
         "У одного из летающих роботов отвалилась крышка и внутри я увидел небольшого размера банку с мозгом, к которому прицеплены провода."
         "Взглянув на микросхемы и различные платы, я вдруг осознал."
         "А ведь они устроены также, как и наши ИИ!"
@@ -1305,7 +1306,7 @@ label contiune_4:
         "Обдумав план, я взял робота и понес к витрине с телевизором."
 
         #(спрайт Удивленная Лиза)
-        show lisa-smile
+        show lisa-neutral
         with Dissolve(0.2)
 
         liza "Что ты собираешься делать?"
@@ -1313,7 +1314,7 @@ label contiune_4:
         anton "Перепрограммирую его, чтобы мы могли долететь на нём до института."
 
         #(спрайты пропадают) 
-        hide lisa-smile
+        hide lisa-neutral
         with Dissolve(0.2)
         
         "Я стал копаться во внутренностях корпуса, пока не нашел нужные провода от микросхем и не подключил их к телевизору."
@@ -1322,5 +1323,5 @@ label contiune_4:
     #(иначе)
     else:
         pavel "Придётся осторожно двигаться по улицам в сторону института." 
-        pavel "Я знаю дорогу. Идемте, нельзя медлить."
+        pavel "Я знаю дорогу. Идёмте, нельзя медлить."
         return

@@ -21,8 +21,9 @@ define megabrain = Character('Мегамозг', color="#ffffff")
 #Переменные выборов
 default flipped_the_booklet = False
 default qte_comp = False
+default qte_losed = False
 default Calmed_Lisa_down = False
-default Select_1_and_3 = False
+default Select_2_and_3 = False
 default fifteen_comp = False
 default qte_ac3 = False
 default fifteen_ac3 = False

@@ -3,14 +3,14 @@ label ac1:
     #abyss_call
     play music "abyss_call_7dl.ogg" volume 0.1
     #(Фон Фантазия)
-    scene fantasy_anim
+    scene fantasy_anim with Dissolve(0.5)
 
     
     #*звук приглушенный стук шестерней и работы механизма*
 
     "Я никогда не слышал звук."
     #*звук приглушенный стук сердца* 
-    $ renpy.sound.play("audio/heartbeat_7dl.ogg", loop=True, relative_volume=0.08)
+    $ renpy.sound.play("audio/heartbeat_7dl.ogg", loop=True, relative_volume=0.35)
 
     "Слабый гул электрических механизмов, стук аппарата перекачки жидкости в моём теле."
 
@@ -223,7 +223,7 @@ label ac1:
     anton 'Такие "средние" вузы по мнению "очень экспертных" списков вузов дадут куда более актуальные знания для обычного программиста.'
     anton 'У меня есть друзья, которые учатся в РТУ МИРЭА или МИСиС и они говорят о хорошем качестве образования.'
     anton 'Да и питерский Политех тоже от них не отстаёт.'
-    anton 'Надо будет как нибудь созвонится с ними, как поживают там крабики?'
+    anton 'Надо будет созвонится с ними, как там поживают товарищи-студенты?'
 
     #(спрайт Хитрая Лиза)
     #хз где взять
@@ -366,7 +366,7 @@ label ac1:
             play sound "wakeup_7dl.ogg" volume 0.05
             show cg_buklet_1 at Glitch(glitch_strength=0.000001)
             pause 3
-            scene cg_buklet_1
+            scene cg_buklet
             stop sound
 
             "Что за?.."
@@ -409,7 +409,7 @@ label ac1:
 
         "Заговорил учёный, взяв юношу за плечи."
 
-        scientist "Мы открыли дверь!"
+        scientist "Мы открыли ДВЕРЬ!"
 
         "Он был так взбудоражен, что совсем не обращал внимание, какой шум создаёт."
 
@@ -477,13 +477,11 @@ label ac1:
 
         #(спрайт Удивленная Лиза)
         #хз нету
-        hide lisa-neutral with Dissolve(0.2)
-        show lisa-smile with Dissolve(0.2)
 
         "Я схватил ничего не понимающую Лизу за руку и потащил за собой."
 
-        hide lisa-smile
-        show lisa-smile:
+        hide lisa-neutral
+        show lisa-neutral:
             xpos 600
             ypos 185
             linear 2 xpos 2500  # движение вверх за 2 секунды до позиции 100 по оси Y
@@ -503,8 +501,8 @@ label ac1:
 
         #спрайт Удивленная Лиза
         #хз, нету спрайта
-        hide lisa-smile with Dissolve(0.2) 
-        show lisa-smile with Dissolve(0.2) 
+        hide lisa-neutral with Dissolve(0.2) 
+        show lisa-neutral with Dissolve(0.2) 
 
         "Вскоре мы стояли у большой железной двери, располагающейся на одной из лестничных площадок."
 
@@ -526,7 +524,6 @@ label ac1:
         with Dissolve(1.5)
 
         #спрайт Нейтральная Лиза
-        show lisa-neutral with Dissolve(0.2) 
 
         "Тихонько прошмыгнув в неё, мы увидели пустой коридор кафедры."
 
@@ -616,12 +613,15 @@ label ac1:
         scientist "Это межпространственно-временной телепорт!"
         scientist "Он может переместить любого человека во времени и пространстве, что противоречит всем известным физическим законам."
         scientist "Однако оно работает! Это невероятное открытие!"
+        hide scientist1-smile 
+        with Dissolve(0.2)
+        show scientist1-neutral at left
         scientist "Но сейчас он почему-то закрылся. Мы уверены, что его нужно просто как-то открыть."
         
         anton "Так давайте я попробую."
 
         #(спрайт Удивленный Второй ученый, спрайт Нейтральный Павел)
-        hide scientist1-smile
+        hide scientist1-neutral
         hide scientist2-unhappy
         with Dissolve(0.2)
         show scientist2-unhappy at left
@@ -629,15 +629,14 @@ label ac1:
         with Dissolve(0.2)
 
         scientist "Нет! Ни в коем случае. Это потенциально очень непредсказуемо." #(Второй ученый)
+        anton "Ну, вы же пытаетесь просто открыть дверь, почему мне нельзя?"
 
         #(спрайт Нейтральный Второй ученый)
         hide scientist2-unhappy
         with Dissolve(0.2)
         show scientist2-neutral at left
         with Dissolve(0.2)
-
-        anton "Ну, вы же пытаетесь просто открыть дверь, почему мне нельзя?"
-        scientist "Мы готовы к рискам, но не хотим подвергать его студентам." #(Павел) (мб Павел не против нашего участия?)
+        scientist "Мы готовы к рискам, но не хотим подвергать его студентам." #(Второй ученый)
 
         anton "Да ну, какие риски! Это же всего лишь дверь."
         anton "Она что, съест меня?"
@@ -646,7 +645,7 @@ label ac1:
         hide scientist1-neutral
         hide scientist2-neutral
         with Dissolve(0.2)
-        show scientist1-smile at center
+        show scientist1-neutral at center
         with Dissolve(0.2)
 
         scientist "Вам нельзя этого делать."
@@ -736,7 +735,7 @@ label ac1:
 
         scientist "Погодите вы! Не заходите туда. Это все еще может быть опасно!"
 
-        "Сказал второй ученый." #(Павел)
+        "Сказал высокий ученый." #(Павел)
 
         anton "Да какая тут опасность."
         anton "Шутники хреновы. Перегрелись вы немного в своей лаборатории."
@@ -760,7 +759,9 @@ label ac1:
 
         "Ответил учёный, заходя в комнату." #(Зайдите, посмотрите сами. Ну и пылища тут у вас.
 
-        #(звук doorclosing 1 раз) "Он явно собирался вывести отсюда меня, однако звук закрытия двери нарушили его планы."
+        #(музыка пропадает)
+        stop music fadeout 2
+
         $ renpy.sound.play("audio/doorclosing.ogg", loop=False, relative_volume=0.035)
         "Он явно собирался вывести отсюда меня, однако вскрик его коллеги и звук закрытия двери нарушили его планы." #Учёный
         return
@@ -786,7 +787,7 @@ image physics-hall:
     "scenes/physics-hall.png"
 
 image university-hall:
-    "scenes/university-hall.png"
+    "scenes/hall2-old-university.png"
 
 image kafedra_fiziki:
     "scenes/old-university-hall.png"

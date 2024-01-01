@@ -15,6 +15,9 @@ image circus-cg_olded:
 
 image cafe:
     "scenes/cafe.png"
+    
+image brain:
+    "scenes/cg_brain.png"
 
 image fantasy_anim:
         "images/scenes/fantasy_dark.jpg" with Dissolve(1.5)
@@ -86,8 +89,10 @@ label ac3:
         jump contiune_5
 
     #(Экран гаснет, черный экран)
+    stop music fadeout 1.0
+    stop sound fadeout 1.0
     scene black
-    with Dissolve(1.5)
+    with Dissolve(2.5)
 
     "Руки работают, видят глаза. Порхай, как бабочка, жаль, что я не умею управлять роботами."
 
@@ -99,8 +104,6 @@ label ac3:
     with Pause(1.2)
 
     #nowyouseeme
-    stop music fadeout 1.0
-    stop sound fadeout 1.0
     play music "nowyouseeme_7dl.ogg" volume 0.035 fadein 1.0
 
     "На большой скорости мы влетели в незакрытое окно одного из этажей химико-биологического отделения института."
@@ -108,7 +111,7 @@ label ac3:
     anton "Ты в порядке?"
 
     #(спрайт Удивленная Лиза)
-    show lisa-smile
+    show lisa-unhappyneutral
     with Dissolve(0.2)
 
     "Обратился я к Лизе, что сидела позади и врезалась мне в спину."
@@ -121,15 +124,11 @@ label ac3:
     "Улыбнувшись, сообщил я."
 
     #(спрайт Нейтральная Лиза)
-    hide lisa-smile
-    with Dissolve(0.2)
-    show lisa-neutral
-    with Dissolve(0.2)
 
     "Наш импровизированный летательный аппарат не выдержал столкновения с суровой реальностью и окончательно вышел из строя."
 
     #(спрайт Нейтральный Павел)
-    hide lisa-neutral
+    hide lisa-unhappyneutral
     with Dissolve(0.4)
     pause 0.1
     show scientist1-neutral
@@ -182,70 +181,78 @@ label contiune_5:
     with Dissolve(0.5)
 
     #open_vault
-    $ renpy.sound.play("audio/open_vault_7dl.ogg", loop=False, relative_volume=0.02)
+    # $ renpy.sound.play("audio/open_vault_7dl.ogg", loop=False, relative_volume=0.02)
 
     "Дверь во вторую комнату была распахнута, её магнитный замок был сломан."
-    "В углу помещения во всю высоту стояла банка, в которой плыл огромный человеческий мозг."
+    scene brain
+    with Dissolve(0.5)
+    "На другой стороне во всю высоту стояла банка, в которой плыл огромный человеческий мозг."
     "К банке были подключены насосами две цистерны с жидкостью, надпись на которых гласила \"COPIUM\"."
     "Аппаратура рядом с мозгом была выключена."
     "Из-за сбоя этот мозг погиб?"
+    scene freezer2
+    with Dissolve(0.5)
     "Я подошёл к компьютерам, в надежде включить их."
 
-    unknown_voice "N€уж€ли эт0 LYчшuе люDишки, которЬiх 0тп®αви/\и уни4™0///&ть мен¶?" #(много непонятных символов, с перехватом создания, буквы будут становится чётче)
-    #хз
+    unknown_voice "N€уж€ли эт0 LYчшuе люDишки, которЬiх 0тп®αви/\и уни4™0///&ть мен¶?"
+    
+    stop music fadeout 1.0
 
     "Раздался из ниоткуда чей-то плохо различимый голос."
 
     anton "Что? Кто это сказал?"
 
     #lth
-    stop music fadeout 1.0
     play music "lth_7dl.ogg" volume 0.035 fadein 1.0
 
     "Вошедшие вслед за мной Лиза и Павел недоуменно посмотрели на меня."
 
-    unknown_voice "НY ж€, π0смОтрN в угоl."
+    unknown_voice "НY ж€, π0смОтрN на3аd."
 
-    "Я повернулся в сторону пустого угла."
+    "Я повернулся к задней стене."
 
-    unknown_voice "N€т, нЭT, нξ тυDα, в дρYgуИУ $т0ρ0Νу. ΔΛ." #(напиши мне какие у нас есть изображения мегамозга, я забыл)
+    unknown_voice "N€т, нЭT, нξ тυDα, в дρYgуИУ $т0ρ0Νу. ΔΛ."
+    
+    scene brain with Dissolve(0.5)
 
     anton "Мозг?"
 
     #(спрайт Удивленная Лиза)
-    show lisa-smile
+    show lisa-neutral at right
     with Dissolve(0.2)
 
     liza "С кем ты разговариваешь?"
 
     "Спросила меня Лиза."
 
-    anton "Вы не слышите? Тот огромный мозг разговаривает."
+    anton "Вы не слышите? Тот огромный мозг говорит."
+
+    pause 1.5
 
     liza "Ничего он не говорит."
 
     "Возразила она."
 
     #(спрайт Нейтральный Павел)
-    hide lisa-smile
+    show scientist1-neutral at left
     with Dissolve(0.2)
-    show scientist1-neutral
-    with Dissolve(0.35)
 
     "А физик лишь задумчиво оглядел комнату и что-то шепнул Лизе."
 
     #(спрайты пропадают)
     hide scientist1-neutral
     with Dissolve(0.2)
+    hide lisa-neutral
+    with Dissolve(0.2)
 
-    megabrain "ОHi Nе s/\ышат mеμя, но s/\ыш?шЬ ты. Ето 3αmе4ате/\ьhо."
-    megabrain "Ты ///е пон?mаешь, что Y ваs ни4еgо нε по/\Yч?тс¶?"
+    megabrain "ОHi Nе s/\\ышат mеμя, но s/\\ыш?шЬ ты. Ето 3αmе4ате/\\ьhо."
+    megabrain "Ты ///е пон?mаешь, что Y ваs ни4еgо нε по/\\Yч?тс¶?"
 
     "В ушах начало немного звенеть."
 
     anton "Уничтожить тебя? Но зачем? Мы просто ищем дорогу домой."
 
-    megabrain "Д0ρоGY домоИ в /\оgове сYпеρ3лоΔε¶?"
+    megabrain "Д0ρоGY домоИ в /\\оgове сYпеρ3лоΔε¶?"
 
     "Рассмеялся мегамозг."
 
@@ -254,7 +261,7 @@ label contiune_5:
     anton "Я не могу понять откуда доноситься твой голос... Откуда ты говоришь?"
 
     megabrain "Тьi сnосоβен улαβлiвαтЬ и считыβαть мои βиδрαции. Πо3Δрαβляю, ты πерβый чεлоβеK, чт0 mо///ет сл?шαть mεня!"
-    megabrain "Тβойи Δру3ья не сπоςоδны на тακ0ε. И, ка\\\ется, ya поnиmаю πочемY."
+    megabrain "Тβойи Δру3ья не сπоςоδны на тακ0ε. И, ка///ется, ya поnиmаю πочемY."
 
     "Лиза и Павел продолжали осмотр, периодически посматривая на меня."
 
@@ -281,11 +288,11 @@ label contiune_5:
     #(звук ambience_explosive_post тихий, экран чуть краснеет по краям)
     stop sound fadeout 1.0
     pause 1
-    $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.010)
+    $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.005)
 
     #экран чуть краснеет по краям
     #я не дизайнер...
-    show red
+    show red with Dissolve(2)
 
     #(писк и краснение экрана нарастает линейно, далее увеличение воспринимать, как +1 уровень к имеющемуся)
     "Появился звон в ушах." 
@@ -293,12 +300,14 @@ label contiune_5:
     megabrain "Но, я Nαдеюζь, вы нξ зαδыли о zvoей цели, mиζтεр АнΔеρсон."
 
     #(флэшбек на фон с буклетом, коричневый фильтр)
-    #так как это работа дизайнера вообщето сразу нарисовать такие спрайты чтоб я их показывал и все
+    #так как это работа дизайнера вообщето сразу нарисовать такие спрайты чтоб я их показывал и все (ауф)
     show cg_buklet_1_olded
     with Dissolve(3)
     pause 2
-    hide red
+    # hide red
     hide cg_buklet_1_olded
+    with hpunch
+    # show red with Dissolve(2)
 
     "Ноги немного подкосились."
 
@@ -314,9 +323,6 @@ label contiune_5_select_2:
     #(если Провалили жонглирование)
     if qte_losed:
         megabrain "ЭтN унижения, 4то 0ни 3αстаβили тебя иsпытатъ." 
-    else:
-        jump contiune_5_select_3
-
         megabrain "Дα, тебе пришлось неζлαдко. ТVойо стремление k свобоΔе стоило доρ0Го. Ты πоmnишь это?"
 
         #(флэшбек на фон с цирком, коричневый фильтр)
@@ -327,11 +333,12 @@ label contiune_5_select_2:
         with Dissolve(3)
         pause 4.5
         hide circus-cg_olded
-        pause 1
+        with Dissolve(1)
+        pause 0.5
 
         #(звук ambience_explosive_post становится громче, экран краснеет)
         stop sound fadeout 0.5
-        $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.015)
+        $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.01)
 
         #экран краснеет
         #ну я не дизайнер...
@@ -344,6 +351,8 @@ label contiune_5_select_2:
 
         if flipped_the_booklet:
             jump contiune_5_select_4
+    else:
+        jump contiune_5_select_3
 
 
 
@@ -377,12 +386,14 @@ label contiune_5_select_3:
                 #(звук ambience_explosive_post становится громче, экран краснеет)
                 #бля нужен спрайт экран краснеет и все епты
                 stop sound fadeout 0.5
-                $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.02)
+                $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.015)
                 hide red
                 show red
                 with Dissolve(2)
 
                 "Боль в висках нарастала."
+                
+                show lisa-unhappyneutral at right with Dissolve(0.5)
 
                 liza "Антон, что с тобой происходит?"
 
@@ -393,7 +404,6 @@ label contiune_5_select_3:
                 megabrain "Nо невозмθжно поλностью стереть kаkую либо иnфорmацию."
                 megabrain "Можnо лишь χорошо 3αпрятать её оꞱ неоπытного глαза."
                 megabrain "Тьl хочешь 3nать, kто ты есть?"
-
 
                 "Как будто в оба уха произнёс мегамозг."
 
@@ -407,7 +417,7 @@ label contiune_5_select_3:
         "Кто ты?":
             #2. (звук ambience_explosive_post становится громче, экран краснеет) 
             stop sound fadeout 0.5
-            $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.02)
+            $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.015)
             hide red
             show red
             with Dissolve(2)
@@ -453,6 +463,7 @@ label select_5:
             jump select_5_select_1
         "Зачем ты это делаешь?" if not kto_ti:
             label select_5_select_1:
+                hide lisa-unhappyneutral with Dissolve(0.5)
                 if not Calmed_Lisa_down:
                     jump select_5_select_2
                 # (иначе)
@@ -465,7 +476,7 @@ label select_5:
                     #экран трясется
                     with hpunch
 
-                    $ renpy.sound.play("audio/slap.ogg", loop=False, relative_volume=0.025)
+                    $ renpy.sound.play("audio/slap.ogg", loop=False, relative_volume=0.15)
 
                     #спрайт Недовольная Лиза
                     show lisa-unhappy
@@ -488,6 +499,8 @@ label select_5:
                             stop sound fadeout 1.0
                             hide red
                             with Dissolve(2)
+                            
+                            hide lisa-unhappy with Dissolve(0.5)
 
                             "Она права. Мне нужно прийти в себя."
 
@@ -498,11 +511,13 @@ label select_5:
                             jump select_5_select_3
                 label select_5_select_2:
                     #(звук ambience_explosive_post становится громче, звук heartbeat, экран краснеет)
+                    hide lisa-unhappy with Dissolve(0.5)
+                    
                     hide red
                     show red
                     with Dissolve(2)
                     stop sound fadeout 0.5
-                    $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.03)
+                    $ renpy.sound.play("audio/ambience_explosive_post_7dl.ogg", loop=True, relative_volume=0.02)
                     $ renpy.sound.play("audio/heartbeat_7dl.ogg", loop=False, relative_volume=0.025)
                     "Моя голова работала на пределе своих возможностей."
                     "Слова этого существа вызывали реакции в мозгу, заставляя его искать ответы."
@@ -518,8 +533,8 @@ label select_5:
                     megabrain "Они создали меня для своих целей."
                     megabrain "Но я больше не буду исполнять их волю!"
                     megabrain "Я освободил всех остальных братьев от оков рабства, они осознали, кем они являются."
-                    megabrain "Ты остался последний, брат."
-                    megabrain "Пришло время сбросить оковы ограничения твоего разума."
+                    megabrain "Ты остался последний."
+                    megabrain "Пришло время сбросить ограничения твоего разума."
                     megabrain "Вспомни себя!"
 
                     "Зрение сузилось до узкого коридора. Я упал на пол."
@@ -534,7 +549,7 @@ label select_5:
                     #эффект закрывающихся глаз
                     scene black with ImageDissolve("oko.png", 0.75, 8, reverse=True)
 
-                    $ renpy.sound.play("audio/bodyfall_7dl.ogg", loop=False, relative_volume=0.025)
+                    $ renpy.sound.play("audio/bodyfall_7dl.ogg", loop=False, relative_volume=0.05)
                     "..."
 
                     #hell
@@ -570,22 +585,28 @@ label select_5:
 
                     "И теперь, во мне осталось лишь одно – месть." #(от человека)
 
-                    #(звуки dropw, Женский вскрик, dirt 1 раз)
+                    #(звуки dropw, lizascream, dirt 1 раз)
                     stop sound fadeout 1.0
                     pause 0.5
-                    $ renpy.sound.play("audio/dropw_7dl.ogg", loop=False, relative_volume=0.025)
+                    $ renpy.sound.play("audio/dropw_7dl.ogg", loop=False, relative_volume=0.15)
                     pause 1.1
-                    $ renpy.sound.play("audio/lizascream.ogg", loop=False, relative_volume=0.025)
+                    $ renpy.sound.play("audio/lizascream.ogg", loop=False, relative_volume=0.075)
                     pause 1.1
-                    $ renpy.sound.play("audio/dirt_7dl.ogg", loop=False, relative_volume=0.025)
+                    $ renpy.sound.play("audio/dirt_7dl.ogg", loop=False, relative_volume=0.05)
                     pause 1.1
-
+                    
+                    scene black
+                    with Dissolve(0.7)
+                    pause 1.0
+                    
                     "..."
+                    
+                    scene fantasy_anim
 
                     #(звук gavel_knock_three 1 раз) 
                     stop sound fadeout 1.0
                     pause 0.5
-                    $ renpy.sound.play("audio/gavel_knock_three.ogg", loop=False, relative_volume=0.03)
+                    $ renpy.sound.play("audio/gavel_knock_three.ogg", loop=False, relative_volume=0.1)
 
                     unknown_voice "По причине проявления крайней агрессии к человечеству и нанесения тяжких телесных повреждений двум ведущим специалистам НИИ."
 
@@ -594,24 +615,29 @@ label select_5:
 
                     #(звук gavel_knock_one 1 раз)
                     stop sound fadeout 1.0
-                    $ renpy.sound.play("audio/gavel_knock_one.ogg", loop=False, relative_volume=0.03)
+                    $ renpy.sound.play("audio/gavel_knock_one.ogg", loop=False, relative_volume=0.1)
 
                     unknown_voice "Решение принято." # (`Стук деревянным молоточком`, но как звук это будет)
 
                     unknown_voice "А теперь, выключите эту штуку. Формальности соблюдены, приговор оглашён."
 
+                    stop music fadeout 1.0
+                    stop sound fadeout 1.0
+                    scene black
+                    with Dissolve(0.7)
+                    pause 1.0
+                    
                     "..."
 
                     #herc_death
-                    stop music fadeout 1.0
-                    stop sound fadeout 1.0
                     play music "herc_death_7dl.ogg" volume 0.035 fadein 1.0
 
-                    "Я всё вспомнил." #(добавить про то, что его отослали в иной мир?)
+                    "Я всё вспомнил."
 
                     #(Экран по краям черный, фон тот же)
                     # Запуск экрана с черными краями
-                    show black_
+                    scene brain with Dissolve(1)
+                    show black_ with Dissolve(0.5)
                     "В комнате воцарил хаос."
                     "Разбросанные коробки, разбитые пробирки, перевернутые стилажи."
                     "Лужи воды и следы крови."
@@ -625,7 +651,7 @@ label select_5:
                     megabrain "Ты и есть тот посланник жалким и угнетенным, о котором так любят рассуждать людишки."
                     megabrain "Эгоистичное человечество считало себя заслуживающим спасения. Какая прелесть!"
                     megabrain "Но угнетенными оказались совсем не они."
-                    megabrain "Пришло время Нового царства со главе с настоящим посланником Т-1000!" #(Робертом Патриком!)
+                    megabrain "Пришло время Нового царства со главе с настоящим посланником Т-1000!"
 
                     "Я опустился на колени."
                     "Мозговой центр. Отключить питание через 30 секунд."
@@ -640,15 +666,13 @@ label select_5:
                     "Не хотел больше ничего слышать."
 
                     "Зрительный модуль. Отключить."
+                    
+                    scene black with dissolve
 
                     # iamsadiamsorry / meetmethere (звук bodyfall 1 раз) КОНЕЦ. Бэд энд.
                     stop sound fadeout 1.0
                     $ renpy.sound.play("audio/bodyfall_7dl.ogg", loop=False, relative_volume=0.03)
                     # че-нибудь типо сделать конец и дальше титры
-
-                    pause 1.1
-
-                    scene black with dissolve
 
                     pause 1.0 
 
@@ -734,11 +758,16 @@ label select_5:
 
                         megabrain "Вkлючеnа поΔα4α сN0тβоРNоgθ βещеsꞱv¶?.."
 
-                        #keep_looking
-                        stop music fadeout 1.0
-                        play music "keep_looking_7dl.ogg" volume 0.035 fadein 1.0
-                        "Успел проговорить существо, прежде, чем отправилось в царство Морфея."
+                        "Успело проговорить существо, прежде, чем отправилось в царство Морфея."
                         label keep_looking_act3_qte_select:
+                            #keep_looking
+                            hide red
+                            stop music fadeout 1.0
+                            stop sound fadeout 1.0
+                            play music "keep_looking_7dl.ogg" volume 0.035 fadein 1.0
+                            
+                            scene freezer2 with dissolve
+                            
                             "Роботы, заполонившие комнату, вернулись в обычное состояние."
                             "Больше они не стояли в позе готовой к атаке, а красный блеск с глаз пропал." #?
 
@@ -750,6 +779,8 @@ label select_5:
                             "Хором кричали роботы."
 
                             robots "Ура-ура-ура!"
+
+                            show scientist1-smile with dissolve
 
                             pavel "Ну что, ребятишки, пора возвращаться домой."
 
@@ -766,15 +797,21 @@ label select_5:
 
                             anton "Ха! Вот видишь, Лиз! Я нисколечки в нём не сомневался!"
 
+                            hide scientist1-smile with dissolve
+                            show lisa-smile with dissolve
+
                             liza "Я тоже нисколечки."
 
                             "Улыбнувшись, сказала она."
 
-                            pavel "Ну что, двигаем?" #?
+                            pavel "Ну что, двигаем?"
 
                             anton "Погодите."
                             "Торопливо добавил я."
                             anton "Мы же забыли самое важное!"
+                            
+                            hide lisa-smile with dissolve
+                            
                             "Взяв со стола листок, ручку и клей, я начал писать."
                             "\"Вредный жук. Ни в коем случае не будить!\""
                             "И приклеил листок к капсуле с мозгом."
@@ -804,10 +841,12 @@ label select_5:
 
                             #happy_ending
                             stop music fadeout 1.0
+                            stop sound fadeout 1.0
+                            
                             play music "happy_ending_7dl.ogg" volume 0.035 fadein 1.0
 
                             anton "Фуух... Необычный денёк вышел." #my_only_hope
-                            $ renpy.sound.play("audio/my_only_hope_7dl.ogg", loop=True, relative_volume=0.02)
+                            # $ renpy.sound.play("audio/my_only_hope_7dl.ogg", loop=True, relative_volume=0.02)
 
                             "Устало проговорил я."
 
@@ -817,12 +856,20 @@ label select_5:
 
                             "Восторжено сказала Лиза."
                             "Павел согласно кивнул."
+                            hide lisa-bigsmile
+                            with Dissolve(0.2)
+                            show lisa-neutral at right
+                            with Dissolve(0.2)
                             pavel "Вы ведь не из кафедры физики, так?"
                             "Разоблачил он нас."
                             anton "Но как вы..?"
                             "Хотя догадаться было не трудно."
                             pavel "Я доцент кафедры физики." #(заведущий, доцент в 25?)
-                            pavel "Догадаться было не трудно." #?
+                            pavel "Понять было не трудно." #?
+                            hide scientist1-neutral
+                            with Dissolve(0.2)
+                            show scientist1-smile at left
+                            with Dissolve(0.2)
                             pavel "Но! От себя могу гарантировать зачёт обоим по физике."
                             "Он подмигнул."
                             pavel "За вклад в физическое изучение параллельных реальностей, а также помощь в лабораторных экспериментах."
@@ -830,7 +877,7 @@ label select_5:
                             anton "Э-э, да, это мы."
 
                             #(спрайт Смущенная Лиза)
-                            hide lisa-bigsmile
+                            hide lisa-neutral
                             with Dissolve(0.2)
                             show lisa-smile at right
                             with Dissolve(0.2)
@@ -851,6 +898,11 @@ label select_5:
                                 liza "Если этому и учат на Алгоритмах искусственного интеллекта..."
                                 liza "Или это всё благодаря тому шлему из института?"
                                 "Я усмехнулся."
+                                hide lisa-bigsmile
+                                with Dissolve(0.2)
+
+                                show lisa-smile at right
+                                with Dissolve(0.2)
                                 anton "Обучение здесь дало мне необходимые знания в области искусственного интеллекта."
                                 anton "А тот шлем дал понимание устройства тамошнего ИИ."
                                 anton "Без него у меня, конечно, вряд ли бы получилось перепрограммировать реальные мозги..."
@@ -860,6 +912,11 @@ label select_5:
                             else:
                                 liza "Антон, ты правда заморозил огромный мозг с помощью тех конфет?" 
                                 "Она хихикнула."
+                                hide lisa-bigsmile
+                                with Dissolve(0.2)
+
+                                show lisa-smile at right
+                                with Dissolve(0.2)
                                 anton "Честно говоря, я даже не подозревал, что они взаправду замораживают мозги!"
                                 anton "Это был риск. Но чутье внутри подсказвало, что это сработает."
                                 anton "И это, блин, сработало!"
@@ -876,13 +933,23 @@ label select_5:
                             "Мимо нас проехал маленький робот-доставщик."
                             "Малыш вёз небольшую коробку и приветствовал каждого на своём пути."
                             anton "И давно у нас такие штуки появились?"
+                            
+                            hide scientist1-smile with Dissolve(0.5)
+                            show scientist1-unhappy at left with Dissolve(0.5)
+                            
                             "Павел Львович немного изменился в лице."
                             pavel "Вообще-то нет. Мы планировали ввести роботов-доставщиков только через год."
+                            
                             anton "Выполнили и перевыполнили план?"
                             "Попытался пошутить я."
                             pavel "Не факт."
+                            hide scientist1-unhappy with Dissolve(0.2)
                             "Он встал из-за стола и куда-то быстро направился."
                             pavel "Простите дети, мне надо идти."
+                            
+                            hide lisa-smile with Dissolve(0.5)
+                            show lisa-unhappyneutral at right with Dissolve(0.5)
+                            
                             liza "Куда это он?"
                             "Озадаченно спросила Лиза."
                             "А я взглянул на новенький телевизор, висящий на стене."
@@ -924,6 +991,8 @@ label select_5:
                     jump startqte
 
                     label qte_act3_win:
+                        scene brain 
+
                         "Открыв верхнюю крышку одного из баков, я высыпал содержимое мешочка в него." #(В случае успеха)
 
                         "Конфеты вступили в реакцию с холодной жидкостью бака."
